@@ -1,0 +1,75 @@
+name: Bearing
+options:
+  bundleIdPrefix: com.mcati
+  deploymentTarget:
+    iOS: "26.5"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+
+targets:
+  Bearing:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+      - path: Shared
+      - path: HealthKit
+      - path: Whoop
+      - path: Dashboard
+      - path: Config
+        excludes:
+          - Secrets.example.swift
+      - path: Config/Secrets.example.swift
+        buildPhase: none
+      - path: Settings
+      - path: Plan
+      - path: Notifications
+      - path: AI
+      - path: CLAUDE.md
+        buildPhase: none
+      - path: PROJECT_SPEC.md
+        buildPhase: none
+      - path: KURULUM.md
+        buildPhase: none
+      - path: DESIGN.md
+        buildPhase: none
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: Bearing
+        NSHealthShareUsageDescription: "Aktivite, kalp, beslenme, uyku ve vücut ölçümü verilerini tek panelde göstermek için Sağlık verilerinize okuma erişimi gerekiyor."
+        NSHealthUpdateUsageDescription: "Gerekli olduğunda (ör. veri düzeltme) Sağlık uygulamasına veri yazabilmek için izin istenir."
+        CFBundleURLTypes:
+          - CFBundleURLName: whoop
+            CFBundleURLSchemes:
+              - bearing
+        UILaunchScreen: {}
+        ITSAppUsesNonExemptEncryption: false
+    entitlements:
+      path: Bearing.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.mcati.bearing
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: "1"
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+
+schemes:
+  Bearing:
+    build:
+      targets:
+        Bearing: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
