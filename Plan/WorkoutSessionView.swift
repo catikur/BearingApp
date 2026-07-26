@@ -158,6 +158,10 @@ struct WorkoutSessionView: View {
         }
         .buttonStyle(.plain)
         .background(isActive ? DS.Surface.accent.opacity(0.06) : .clear)
+        .accessibilityLabel("Set \(i + 1), "
+                            + { if let w = s.weight, let r = s.reps { return "\(WorkoutSessionView.numText(w)) kilogram çarpı \(r) tekrar" } else { return "girilmedi" } }()
+                            + (s.done ? ", tamamlandı" : ""))
+        .accessibilityHint("Düzenlemek için dokun")
     }
 
     @ViewBuilder

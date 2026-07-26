@@ -141,6 +141,16 @@ struct MetricDetailView: View {
                 }
             }
             .frame(height: 220)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("\(def.title) grafiği, son \(days) gün")
+            .accessibilityValue({
+                let vals = windowed.map { $0.value }
+                let avg = vals.reduce(0, +) / Double(max(vals.count, 1))
+                var parts = ["son değer \(windowed.last.map { format($0.value) } ?? "yok") \(def.unit)",
+                             "ortalama \(format(avg)) \(def.unit)"]
+                if let b = baseline { parts.append("kişisel baseline \(format(b.mean)) civarı") }
+                return parts.joined(separator: ", ")
+            }())
 
             HStack(spacing: DS.Space.lg) {
                 if baseline != nil {

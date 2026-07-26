@@ -77,6 +77,7 @@ struct TodayView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { showEditor = true } label: { Image(systemName: "list.bullet.rectangle") }
+                        .accessibilityLabel("Plan düzenleyici")
                 }
             }
             .sheet(isPresented: $showEditor) {
@@ -378,6 +379,10 @@ private struct DayProgressRow: View {
             }
         }
         .padding(.vertical, DS.Space.xs)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(def?.title ?? progress.metricId), \(fmt(progress.today))"
+                            + (progress.target.map { " bölü \(targetLabel($0))" } ?? "")
+                            + ", \(remainingText)")
     }
 
     // MARK: bugün / hedef

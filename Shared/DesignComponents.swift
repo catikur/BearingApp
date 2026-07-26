@@ -132,6 +132,7 @@ struct EngineCard<Content: View, Badge: View>: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .cardSurface()
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -163,6 +164,10 @@ struct BigStat: View {
                     .lineLimit(2)
             }
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(value) \(unit)"
+                            + (caption.map { ", \($0)" } ?? "")
+                            + (confidence == .low ? ", güven düşük" : ""))
     }
 }
 
@@ -422,6 +427,8 @@ struct MetricCard: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .cardSurface(padding: DS.Space.md)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(name), \(value) \(unit)" + (secondary.map { ", \($0)" } ?? ""))
     }
 }
 

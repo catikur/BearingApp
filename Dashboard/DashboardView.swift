@@ -112,9 +112,11 @@ struct DashboardView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { showAI = true } label: { Image(systemName: "sparkles") }
+                        .accessibilityLabel("Yorum asistanı")
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { showLabel = true } label: { Image(systemName: "tag") }
+                        .accessibilityLabel("Günü etiketle")
                 }
                 ToolbarItem(placement: .topBarLeading) {
                     Menu {
@@ -133,6 +135,7 @@ struct DashboardView: View {
                                 .disabled(!whoopAuth.hasCredentials)
                         }
                     } label: { Image(systemName: "ellipsis.circle") }
+                        .accessibilityLabel("Panel menüsü")
                 }
             }
             .refreshable { await reload() }

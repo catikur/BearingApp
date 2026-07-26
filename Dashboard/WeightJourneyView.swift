@@ -164,6 +164,9 @@ struct WeightJourneyView: View {
                 }
             }
             .frame(height: 240)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("Kilo grafiği: ham tartımlar, düzleştirilmiş eğri ve projeksiyon")
+            .accessibilityValue("Düzleştirilmiş \(DS.decimal(r.smoothedNow)) kilogram, hız haftada \(DS.decimal(abs(r.ratePerWeek), fraction: 2)) kilogram \(r.ratePerWeek < 0 ? "kayıp" : "artış"), hedef \(DS.decimal(profileStore.profile.targetWeightKg)) kilogram")
 
             // Tahmini varış bir kestirimdir — düşük güven dilbilgisi
             if let e = r.etaDate, let w = r.weeksRemaining {
