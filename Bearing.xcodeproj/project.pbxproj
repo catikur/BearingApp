@@ -50,6 +50,7 @@
 		D0D8C9B5839705EF2626D1E1 /* Correlation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90974765656F49D79A972058 /* Correlation.swift */; };
 		D2A6EDF72017B145838B3A36 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E94F938B15ADF63276F079 /* ProfileStore.swift */; };
 		D5B09855E0A04895C531882B /* RuleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F0B8965A26AC97C542166 /* RuleEditorView.swift */; };
+		E90AAC50377D93A49576004C /* EngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA107BDB45FBAF2B352EAE36 /* EngineTests.swift */; };
 		EAD003B7B6C9FA693B123D4E /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C87030B9A3CC0567D819D /* NotificationSettingsView.swift */; };
 		EB876A3121336F19304A0A2F /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A222579DBEF358D9E15463EC /* Rules.swift */; };
 		EC38CD9AD9674B38D2182547 /* TDEEDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05088D07C9CEAD3E4332D46A /* TDEEDetailView.swift */; };
@@ -58,6 +59,16 @@
 		F63524804A51CDB90D97F0DC /* ProposalReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3107D170535765F206C21C1 /* ProposalReviewView.swift */; };
 		FF53C40524FA12F657A52B4F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A22F32D45496C2E0C2C68A /* SettingsView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7B2005143FC040517FBC7DEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 813863DA8BDD01B594100745 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18EE1F005821451F7E92C8D5;
+			remoteInfo = Bearing;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		05088D07C9CEAD3E4332D46A /* TDEEDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDEEDetailView.swift; sourceTree = "<group>"; };
@@ -102,6 +113,7 @@
 		BB9125A3647FB4B43FA6F80E /* MetricDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDetailView.swift; sourceTree = "<group>"; };
 		C3E94F938B15ADF63276F079 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
 		C5E2D679139CC2C5E827EAA5 /* Bearing.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Bearing.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7A510812837DC97DB3A5891 /* BearingTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BearingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97573381324BF7A0507F9E9 /* PlanStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanStore.swift; sourceTree = "<group>"; };
 		CA39E0384148C7B0BD353465 /* AITasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITasks.swift; sourceTree = "<group>"; };
 		CF42AF2ECB5B6BE00D959441 /* AIProposal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProposal.swift; sourceTree = "<group>"; };
@@ -113,6 +125,7 @@
 		E0F50CEDC32C3FCB7B6D6E77 /* PlanEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanEditorView.swift; sourceTree = "<group>"; };
 		E3107D170535765F206C21C1 /* ProposalReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposalReviewView.swift; sourceTree = "<group>"; };
 		E8A6355284B18A9775DF643A /* KURULUM.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = KURULUM.md; sourceTree = "<group>"; };
+		EA107BDB45FBAF2B352EAE36 /* EngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTests.swift; sourceTree = "<group>"; };
 		EB6F0B8965A26AC97C542166 /* RuleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEditorView.swift; sourceTree = "<group>"; };
 		F5F14DBFD4709D69FF08BDEC /* AISettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISettingsView.swift; sourceTree = "<group>"; };
 		F820ABF69795DEA098ECDEC8 /* DENETIM-2026-07-26.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "DENETIM-2026-07-26.md"; sourceTree = "<group>"; };
@@ -172,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				C5E2D679139CC2C5E827EAA5 /* Bearing.app */,
+				C7A510812837DC97DB3A5891 /* BearingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,9 +273,18 @@
 				C6DB1154ACE6CC472ACD36F6 /* Plan */,
 				109730B30F75E1BDE2102EAD /* Settings */,
 				5C6700A6B48D517AFE8F9162 /* Shared */,
+				A6D1ED7464C2A8854D21656A /* Tests */,
 				43EFCC969BB84CBBC71DCC36 /* Whoop */,
 				501FFCD00417A55690D0B31F /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		A6D1ED7464C2A8854D21656A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EA107BDB45FBAF2B352EAE36 /* EngineTests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		AB01658A9694E2D0DAA10B44 /* Config */ = {
@@ -313,6 +336,24 @@
 			productReference = C5E2D679139CC2C5E827EAA5 /* Bearing.app */;
 			productType = "com.apple.product-type.application";
 		};
+		22A2D49146299FA569C6DE5C /* BearingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE35ADB23643D9416112FED4 /* Build configuration list for PBXNativeTarget "BearingTests" */;
+			buildPhases = (
+				23B44AA12E67F990BD9EFE24 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E380FD2D16002D67C3B30E84 /* PBXTargetDependency */,
+			);
+			name = BearingTests;
+			packageProductDependencies = (
+			);
+			productName = BearingTests;
+			productReference = C7A510812837DC97DB3A5891 /* BearingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -342,6 +383,7 @@
 			projectRoot = "";
 			targets = (
 				18EE1F005821451F7E92C8D5 /* Bearing */,
+				22A2D49146299FA569C6DE5C /* BearingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -404,7 +446,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23B44AA12E67F990BD9EFE24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E90AAC50377D93A49576004C /* EngineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E380FD2D16002D67C3B30E84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18EE1F005821451F7E92C8D5 /* Bearing */;
+			targetProxy = 7B2005143FC040517FBC7DEE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		199C7BD65B4A2C55FCDBA750 /* Release */ = {
@@ -426,6 +484,23 @@
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
+		};
+		391AF1AB093817466AE3EB33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcati.bearing.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bearing.app/Bearing";
+			};
+			name = Debug;
 		};
 		42592EA7812FEE9B3818E1C3 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -480,6 +555,23 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		45917E3FE7F8406B51936C23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcati.bearing.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bearing.app/Bearing";
 			};
 			name = Release;
 		};
@@ -574,6 +666,15 @@
 			buildConfigurations = (
 				7AE4394A095563B1E66BB3C8 /* Debug */,
 				42592EA7812FEE9B3818E1C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DE35ADB23643D9416112FED4 /* Build configuration list for PBXNativeTarget "BearingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				391AF1AB093817466AE3EB33 /* Debug */,
+				45917E3FE7F8406B51936C23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
