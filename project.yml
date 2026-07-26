@@ -20,10 +20,6 @@ targets:
       - path: Whoop
       - path: Dashboard
       - path: Config
-        excludes:
-          - Secrets.example.swift
-      - path: Config/Secrets.example.swift
-        buildPhase: none
       - path: Settings
       - path: Plan
       - path: Notifications
@@ -35,6 +31,8 @@ targets:
       - path: KURULUM.md
         buildPhase: none
       - path: DESIGN.md
+        buildPhase: none
+      - path: docs
         buildPhase: none
     info:
       path: Info.plist

@@ -60,7 +60,7 @@ struct HealthContextView: View {
                 footer: { Text("Trend takibi için değil — yapay zekânın kararlarını bağlamlandırması için. Ör. \"Apo B · 138 mg/dL · Nis 2025\".") }
 
                 listSection("Bekleyen uzman onayı", "Ör. kardiyoloji onayı öncesi ağır yük yok",
-                            $profileStore.context.pendingClinical, tint: .orange)
+                            $profileStore.context.pendingClinical, tint: DS.Status.attention)
 
                 Section("Serbest not") {
                     TextField("Eklemek istediğin her şey", text: $profileStore.context.freeNotes, axis: .vertical)

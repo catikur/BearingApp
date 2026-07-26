@@ -5,6 +5,7 @@ struct TodayView: View {
     @EnvironmentObject var notifier: NotificationManager
     @EnvironmentObject var store: DataStore
     @EnvironmentObject var profileStore: ProfileStore
+    @EnvironmentObject var config: DashboardConfig
 
     @State private var day = Calendar.current.startOfDay(for: Date())
     @State private var showEditor = false
@@ -28,13 +29,18 @@ struct TodayView: View {
                            profile: profileStore.profile)
     }
 
+    /// Görüntülenen GÜNÜN ilerlemesi — motor `now: day` ile o günü ölçer;
+    /// bugün için davranış eskisiyle aynı, geçmişte o günün toplamları gelir.
     private var dayProgresses: [DayProgress] {
         ProgressEngine.computeAll(metricIds: profileStore.settings.todayProgressMetricIds,
                                   series: store.series,
                                   rules: profileStore.rules,
                                   tdee: tdee,
-                                  profile: profileStore.profile)
+                                  profile: profileStore.profile,
+                                  now: day)
     }
+
+    private var isFuture: Bool { day > Calendar.current.startOfDay(for: Date()) }
 
     /// Kalori hedefi TDEE'den geliyor ve güven düşükse görsel olarak belli edilir.
     private func lowConfidence(_ dp: DayProgress) -> Bool {
@@ -79,36 +85,43 @@ struct TodayView: View {
             .sheet(item: $session) { tmpl in
                 WorkoutSessionView(template: tmpl, day: sessionDay).environmentObject(plan)
             }
-            .task {
+            .task(id: day) {
                 await notifier.refreshStatus()
-                // Beslenme bloğu için gereken metrikler Panel'e girilmeden de yüklensin
+                // Beslenme bloğu için gereken metrikler Panel'e girilmeden de yüklensin;
+                // geçmişe gezinildikçe pencere genişler (id: day yeniden tetikler)
                 await loadNutritionSeries()
             }
         }
     }
 
-    /// Bugün bloğunun ihtiyaç duyduğu serileri yükler (zaten yüklüyse atlar).
+    /// Günün bloğunun ihtiyaç duyduğu serileri yükler; pencere görüntülenen günü kapsar.
+    /// (ensureLoaded, daha geniş pencere istenirse yeniden çeker.)
     private func loadNutritionSeries() async {
-        let window = max(profileStore.settings.tdeeWindowDays, 30)
+        let cal = Calendar.current
+        let daysBack = cal.dateComponents([.day], from: day, to: cal.startOfDay(for: Date())).day ?? 0
+        let window = min(max(profileStore.settings.tdeeWindowDays, daysBack + 7, 30),
+                         max(config.fetchWindowDays, 30))
         for id in profileStore.settings.todayProgressMetricIds + ["calories", "weight"] {
             await store.ensureLoaded(id, days: window)
         }
     }
 
     // MARK: Beslenme ilerleme bloğu
-    /// Yalnızca bugün görüntülenirken gösterilir: "bugüne kadar" ilerleme, geçmiş
-    /// bir günde anlamsız (ProgressEngine bugünü ölçer). Geçmişte gizlenir.
+    /// Bugün: "şu ana kadar" ilerleme. Geçmiş gün: o günün TAM toplamları
+    /// (motor `now: day` ile ölçer). Gelecek günlerde veri olmadığından gizli.
     @ViewBuilder private var nutritionBlock: some View {
         let progresses = dayProgresses
-        if isToday && !progresses.isEmpty {
+        if !isFuture && !progresses.isEmpty {
             VStack(alignment: .leading, spacing: DS.Space.md) {
-                Text("Bugünün beslenmesi")
+                Text(isToday ? "Bugünün beslenmesi" : "Günün beslenmesi · \(DS.shortDate(day))")
                     .font(DS.Font.heading)
                     .foregroundStyle(DS.Text.primary)
                 ForEach(progresses, id: \.metricId) { dp in
-                    DayProgressRow(progress: dp, lowConfidence: lowConfidence(dp))
+                    DayProgressRow(progress: dp, lowConfidence: lowConfidence(dp), isPast: !isToday)
                 }
-                Text("Hedefler kurallarından, kalori ölçülmüş TDEE'den gelir; yedek katalog değeri açıkça işaretlenir.")
+                Text(isToday
+                     ? "Hedefler kurallarından, kalori ölçülmüş TDEE'den gelir; yedek katalog değeri açıkça işaretlenir."
+                     : "O günün toplamları. Hedefler bugünkü kural/TDEE çözümüyle gösterilir — bilinçli bir sadeleştirme.")
                     .font(DS.Font.caption)
                     .foregroundStyle(DS.Text.tertiary)
             }
@@ -337,6 +350,8 @@ struct TodayView: View {
 private struct DayProgressRow: View {
     let progress: DayProgress
     var lowConfidence: Bool = false
+    /// Geçmiş gün: "kaldı/bütçe" dili biter, gün kapanmış toplam dili kullanılır.
+    var isPast: Bool = false
 
     private var def: MetricDef? { HealthMetricCatalog.byId(progress.metricId) }
 
@@ -419,20 +434,23 @@ private struct DayProgressRow: View {
         }
     }
 
-    // MARK: kalan miktar metni (yöne göre)
+    // MARK: kalan miktar metni (yöne + güne göre)
     private var remainingText: String {
         guard let t = progress.target else { return "hedef yok" }
         let r = progress.remaining
         switch t.direction {
         case .atLeast:
-            return progress.state == .atTarget ? "hedefe ulaşıldı" : "\(fmt(r)) \(t.unit) kaldı"
+            if progress.state == .atTarget { return "hedefe ulaşıldı" }
+            return isPast ? "\(fmt(r)) \(t.unit) altında kaldı"
+                          : "\(fmt(r)) \(t.unit) kaldı"
         case .atMost:
-            return progress.state == .overTarget
-                ? "\(fmt(abs(r))) \(t.unit) aşıldı"
-                : "\(fmt(r)) \(t.unit) bütçe kaldı"
+            if progress.state == .overTarget { return "\(fmt(abs(r))) \(t.unit) aşıldı" }
+            return isPast ? "bütçe içinde kaldı"
+                          : "\(fmt(r)) \(t.unit) bütçe kaldı"
         case .between:
             switch progress.state {
-            case .belowTarget: return "banda \(fmt(r)) \(t.unit) var"
+            case .belowTarget: return isPast ? "bandın \(fmt(r)) \(t.unit) altında"
+                                             : "banda \(fmt(r)) \(t.unit) var"
             case .overTarget:  return "\(fmt(abs(r))) \(t.unit) fazla"
             default:           return "bant içinde"
             }

@@ -122,7 +122,7 @@ struct MetricDetailView: View {
                     PointMark(x: .value("Gün", tp.date, unit: .day), y: .value(def.title, tp.value))
                         .foregroundStyle(tp.color)
                         .symbolSize(140)
-                        .annotation(position: .top, spacing: 1) { Text(tp.emoji).font(.system(size: 10)) }
+                        .annotation(position: .top, spacing: 1) { Text(tp.emoji).font(.caption2) }
                 }
             }
             .chartYAxis {

@@ -66,12 +66,12 @@ struct PlanEditorView: View {
                         .foregroundStyle(item.enabled ? .primary : .secondary)
                     if item.phase > 1 {
                         Text("F\(item.phase)")
-                            .font(.system(size: 9, weight: .bold))
+                            .font(.caption2.weight(.bold))
                             .padding(.horizontal, 5).padding(.vertical, 2)
-                            .background(Color.purple.opacity(0.15), in: Capsule())
-                            .foregroundStyle(.purple)
+                            .background(DS.Status.info.opacity(0.15), in: Capsule())
+                            .foregroundStyle(DS.Status.info)
                     }
-                    if item.locked { Image(systemName: "lock.fill").font(.caption2).foregroundStyle(.orange) }
+                    if item.locked { Image(systemName: "lock.fill").font(.caption2).foregroundStyle(DS.Status.attention) }
                 }
                 Text("\(item.schedule.label) · \(item.times.map { $0.label }.joined(separator: ", "))")
                     .font(.caption2).foregroundStyle(.secondary)

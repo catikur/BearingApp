@@ -16,8 +16,7 @@
 1. developer.whoop.com → giriş → **Create App**.
 2. Redirect URI: `bearing://whoop-callback`
 3. Scopes: recovery, cycles, sleep, workout, profile, body_measurement, offline
-4. `Config/Secrets.example.swift`'i kopyala → `Secrets.swift`; client ID/secret gir.
-5. `Secrets.swift`'i `.gitignore`'a ekle.
+4. Uygulamada **Ayarlar → Veri kaynakları → Whoop istemci bilgileri** bölümüne client ID/secret'ı gir → "Kimlik bilgilerini kaydet". Değerler yalnız Keychain'de tutulur; repo'da ve binary'de sır yoktur (Xcode Cloud bu sayede sırsız derler — bkz. docs/adr/0002).
 
 ## 4) Çalıştır
 - **Gerçek iPhone** bağla (HealthKit simülatörde çalışmaz).

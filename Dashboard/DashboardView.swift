@@ -128,6 +128,7 @@ struct DashboardView: View {
                             Button("Whoop bağlantısını kes", role: .destructive) { whoopAuth.disconnect() }
                         } else {
                             Button("Whoop'a bağlan") { whoopAuth.connect() }
+                                .disabled(!whoopAuth.hasCredentials)
                         }
                     } label: { Image(systemName: "ellipsis.circle") }
                 }

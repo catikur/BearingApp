@@ -2,6 +2,8 @@
 
 Bu bir **SwiftUI + HealthKit + Whoop API** kişisel iOS sağlık dashboard'u. Proje bağlamı için `PROJECT_SPEC.md`'yi oku.
 
+> **Önce oku:** `docs/DECISIONS.md` (D1–D6 kararları + sapma ADR'leri) ve güncel denetim `docs/DENETIM-2026-07-26.md`. Kalıcı kararlar aynı gün repo'ya işlenir (ADR/docs) — sohbet bellek değildir.
+
 ## Kurulum / Build
 
 - Bu dosyalar bir Xcode projesine eklenmeli (henüz `.xcodeproj` yok — kullanıcı Xcode'da "iOS App / SwiftUI" projesi oluşturup bu dosyaları ekleyecek, VEYA sen bir Xcode projesi/Swift Package iskeleti oluştur).
@@ -9,7 +11,7 @@ Bu bir **SwiftUI + HealthKit + Whoop API** kişisel iOS sağlık dashboard'u. Pr
 - **Capabilities:** HealthKit (Signing & Capabilities → + HealthKit).
 - **Info.plist:** `NSHealthShareUsageDescription` zorunlu.
 - **URL Type:** Whoop redirect için custom scheme `bearing` (Info → URL Types).
-- **Secrets:** `Config/Secrets.example.swift`'i `Secrets.swift` olarak kopyala, Whoop client bilgilerini gir, `.gitignore`'a ekle.
+- **Secrets:** Repo'da ve binary'de sır YOK. Whoop client ID/secret ve OpenRouter anahtarı Keychain'de tutulur, uygulama içinden girilir (Ayarlar → Veri kaynakları / Yapay Zekâ). Koda sır gömme; `Secrets.swift` kalıbı kaldırıldı (docs/adr/0002).
 - **HealthKit gerçek iPhone gerektirir** — simülatörde veri yoktur. Build'i gerçek cihaz hedefiyle doğrula.
 
 ## Dosya haritası
@@ -27,7 +29,7 @@ Config/DashboardConfig           kullanıcının seçtiği metrikler (UserDefaul
 Config/LabelStore                YEREL ETİKETLEME: günlük etiket+not (UserDefaults)
 Shared/DayLabel                  etiket modeli + TagCatalog (alkol/serbest öğün/oruç…)
 Shared/Correlation               KORELASYON: Pearson/regresyon + otomatik örüntü tarama
-Config/Secrets.example.swift     Whoop client bilgileri şablonu
+(Secrets dosyası YOK — Whoop/OpenRouter kimlik bilgileri Keychain'de, uygulama içinden girilir)
 App/BearingApp                   app girişi + DataStore (HealthKit+Whoop birleştirir)
 Dashboard/DashboardView          ana ekran
 Dashboard/MetricCard             kart + InsightCard

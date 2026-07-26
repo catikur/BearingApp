@@ -11,6 +11,10 @@ struct SettingsView: View {
     @StateObject private var whoopAuth = WhoopAuth.shared
     @Environment(\.dismiss) var dismiss
 
+    @State private var showWhoopCreds = false
+    @State private var whoopClientID = ""
+    @State private var whoopClientSecret = ""
+
     @State private var showRules = false
     @State private var showAI = false
     @State private var showDiscovery = false
@@ -99,10 +103,44 @@ struct SettingsView: View {
                 } else {
                     Button("Bağlan") { whoopAuth.connect() }
                         .buttonStyle(.borderless)
+                        .disabled(!whoopAuth.hasCredentials)
                 }
             }
             if let err = whoopAuth.authError {
                 Text(err).font(.caption).foregroundStyle(Color.red)
+            }
+            // Whoop istemci bilgileri: Keychain'de yaşar; repo/binary'de sır yok (docs/adr/0002).
+            // developer.whoop.com → Create App; Redirect URI: bearing://whoop-callback
+            DisclosureGroup(isExpanded: $showWhoopCreds.animation()) {
+                TextField("Client ID", text: $whoopClientID)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .font(.system(.footnote, design: .monospaced))
+                    .onAppear { if whoopClientID.isEmpty { whoopClientID = whoopAuth.storedClientID } }
+                SecureField("Client Secret", text: $whoopClientSecret)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                Button("Kimlik bilgilerini kaydet") {
+                    whoopAuth.saveCredentials(clientID: whoopClientID, clientSecret: whoopClientSecret)
+                    whoopClientSecret = ""
+                    showWhoopCreds = false
+                }
+                .disabled(whoopClientID.trimmingCharacters(in: .whitespaces).isEmpty ||
+                          whoopClientSecret.trimmingCharacters(in: .whitespaces).isEmpty)
+                if whoopAuth.hasCredentials {
+                    Button("Kimlik bilgilerini sil", role: .destructive) {
+                        whoopAuth.clearCredentials()
+                        whoopClientID = ""
+                    }
+                }
+            } label: {
+                HStack {
+                    Text("Whoop istemci bilgileri")
+                    Spacer()
+                    Text(whoopAuth.hasCredentials ? "kayıtlı" : "eksik")
+                        .font(DS.Font.caption)
+                        .foregroundStyle(whoopAuth.hasCredentials ? Color.green : DS.Status.attention)
+                }
             }
             Picker("Geçmiş penceresi", selection: Binding(
                 get: { config.fetchWindowDays },
@@ -553,7 +591,7 @@ private struct WhoopDiagnosticsView: View {
                         VStack(spacing: 1) {
                             Text("\(item.1)").font(.caption.bold())
                                 .foregroundStyle(item.1 > 0 ? Color.primary : Color.orange)
-                            Text(item.0).font(.system(size: 9)).foregroundStyle(.secondary)
+                            Text(item.0).font(.caption2).foregroundStyle(.secondary)
                         }
                     }
                 }

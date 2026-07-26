@@ -51,6 +51,7 @@ final class DataStore: ObservableObject {
     @Published var series: [String: [MetricSample]] = [:]   // metrik id -> günlük değerler
     @Published var loading = false
     @Published var lastUpdated: Date?
+    private var loadedDays: [String: Int] = [:]              // metrik başına yüklü pencere (gün)
 
     /// Tüm etkin metrikleri (veya hepsini) çek
     func refresh(days: Int = 30, ids: [String]) async {
@@ -62,6 +63,7 @@ final class DataStore: ObservableObject {
         for def in HealthMetricCatalog.all where def.source == .healthKit {
             guard ids.contains(def.id) else { continue }
             series[def.id] = await health.fetch(def, days: days)
+            loadedDays[def.id] = days
         }
 
         // Whoop (bağlıysa)
@@ -73,13 +75,15 @@ final class DataStore: ObservableObject {
         lastUpdated = Date()
     }
 
-    /// Tek bir metriği talep üzerine yükle (korelasyon explorer'da seçilen metrik etkin değilse)
+    /// Tek bir metriği talep üzerine yükle (korelasyon explorer'da seçilen metrik etkin değilse).
+    /// Daha geniş pencere istenirse yeniden çeker (geçmiş güne gezinme bunu tetikler).
     func ensureLoaded(_ id: String, days: Int) async {
-        if let s = series[id], !s.isEmpty { return }
+        if let s = series[id], !s.isEmpty, (loadedDays[id] ?? 0) >= days { return }
         guard let def = HealthMetricCatalog.byId(id) else { return }
         guard def.source == .healthKit else { return }   // Whoop serileri toplu geliyor
         if !health.authorized { await health.requestAuthorization() }
         series[id] = await health.fetch(def, days: days)
+        loadedDays[id] = days
     }
 
     /// Otomatik keşif için tüm HealthKit metriklerini çek (yavaş — kullanıcı tetikler)
@@ -90,6 +94,7 @@ final class DataStore: ObservableObject {
         for def in HealthMetricCatalog.all where def.source == .healthKit {
             if let s = series[def.id], !s.isEmpty { continue }
             series[def.id] = await health.fetch(def, days: days)
+            loadedDays[def.id] = days
         }
         lastUpdated = Date()
     }

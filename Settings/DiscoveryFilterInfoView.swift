@@ -69,7 +69,7 @@ struct DiscoveryFilterInfoView: View {
             Text(group.map { HealthMetricCatalog.byId($0)?.title ?? $0 }.joined(separator: "  ↔  "))
                 .font(.caption)
             Text(group.joined(separator: ", "))
-                .font(.system(size: 9, design: .monospaced)).foregroundStyle(.tertiary)
+                .font(.system(.caption2, design: .monospaced)).foregroundStyle(.tertiary)
         }
     }
 }

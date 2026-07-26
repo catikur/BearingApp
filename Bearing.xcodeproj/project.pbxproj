@@ -34,7 +34,6 @@
 		7CEE22AFD2F94A360A68BE05 /* DiscoveryFilterInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3A4A6233F6A92FE944F5EE /* DiscoveryFilterInfoView.swift */; };
 		8A8A6D676F4A2C89674A5BDD /* MetricPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D72BC9B2CC3342C7B7170C /* MetricPickerView.swift */; };
 		93B6568F2CC6A8DEF0A0C9E8 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDF03CCD0D7F24A48680E12 /* TodayView.swift */; };
-		93F3B306CB0CAE5CAFA1616C /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FE5CE8A1796EA06F984DFE /* Secrets.swift */; };
 		9638CC8ED5CE3F80EEDA7D45 /* DesignComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A856243FA56773C3A4A4923 /* DesignComponents.swift */; };
 		9EC7A1FF966E38ADC0C60CC9 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB4F30DF4EE3F566BE765C /* DashboardView.swift */; };
 		A78D9FBA52C05F3001E1022D /* DayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA3E1AE6485E529BD9FE2E0 /* DayLabel.swift */; };
@@ -62,10 +61,12 @@
 
 /* Begin PBXFileReference section */
 		05088D07C9CEAD3E4332D46A /* TDEEDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDEEDetailView.swift; sourceTree = "<group>"; };
+		056CE63D9A0B3246C00F7053 /* 0001-dogrudan-openrouter-proxysiz.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "0001-dogrudan-openrouter-proxysiz.md"; sourceTree = "<group>"; };
 		05A22F32D45496C2E0C2C68A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		094D45F36C16DF154DE58F00 /* AIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIConfig.swift; sourceTree = "<group>"; };
 		0EFE66F1820E3E06C1A2682E /* BaselineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaselineView.swift; sourceTree = "<group>"; };
 		16D72BC9B2CC3342C7B7170C /* MetricPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricPickerView.swift; sourceTree = "<group>"; };
+		1815B138F761444FC816948F /* DECISIONS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DECISIONS.md; sourceTree = "<group>"; };
 		195C14E3F4DE1DF973C13406 /* Engines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engines.swift; sourceTree = "<group>"; };
 		1B7B981826683C54D972F567 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		219057774AF5A4D76041CA86 /* HealthContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthContextView.swift; sourceTree = "<group>"; };
@@ -91,7 +92,7 @@
 		9125AAF37A350F465892F189 /* WhoopAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoopAuth.swift; sourceTree = "<group>"; };
 		92B87C9191D6E23FFA472F1A /* DashboardConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardConfig.swift; sourceTree = "<group>"; };
 		93648D55C832526A3A104E78 /* LabelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelStore.swift; sourceTree = "<group>"; };
-		94FE5CE8A1796EA06F984DFE /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		99F9435F206AC23D20801FC0 /* 0003-telemetrisiz-calisma.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "0003-telemetrisiz-calisma.md"; sourceTree = "<group>"; };
 		9CECDA0235B5CF85596F4DED /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		A03C67754288C090A41AD899 /* PlanModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanModels.swift; sourceTree = "<group>"; };
 		A222579DBEF358D9E15463EC /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
@@ -100,7 +101,7 @@
 		B629C5C86B879DF83D4D9137 /* DESIGN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
 		BB9125A3647FB4B43FA6F80E /* MetricDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDetailView.swift; sourceTree = "<group>"; };
 		C3E94F938B15ADF63276F079 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
-		C5E2D679139CC2C5E827EAA5 /* Bearing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bearing.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5E2D679139CC2C5E827EAA5 /* Bearing.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Bearing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97573381324BF7A0507F9E9 /* PlanStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanStore.swift; sourceTree = "<group>"; };
 		CA39E0384148C7B0BD353465 /* AITasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITasks.swift; sourceTree = "<group>"; };
 		CF42AF2ECB5B6BE00D959441 /* AIProposal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProposal.swift; sourceTree = "<group>"; };
@@ -114,9 +115,10 @@
 		E8A6355284B18A9775DF643A /* KURULUM.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = KURULUM.md; sourceTree = "<group>"; };
 		EB6F0B8965A26AC97C542166 /* RuleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEditorView.swift; sourceTree = "<group>"; };
 		F5F14DBFD4709D69FF08BDEC /* AISettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISettingsView.swift; sourceTree = "<group>"; };
+		F820ABF69795DEA098ECDEC8 /* DENETIM-2026-07-26.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "DENETIM-2026-07-26.md"; sourceTree = "<group>"; };
 		FAA3E1AE6485E529BD9FE2E0 /* DayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
+		FCC42AB7F2C9806E2BB841BC /* 0002-whoop-istemci-bilgileri-keychain.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "0002-whoop-istemci-bilgileri-keychain.md"; sourceTree = "<group>"; };
 		FCD71A03B813BA59EE6E0495 /* PROJECT_SPEC.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PROJECT_SPEC.md; sourceTree = "<group>"; };
-		FD11DC0D7EC3BBADBA16FDAA /* Secrets.example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.example.swift; sourceTree = "<group>"; };
 		FDDF03CCD0D7F24A48680E12 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +176,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		56E645864CE0CF186BB96EA2 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				1815B138F761444FC816948F /* DECISIONS.md */,
+				F820ABF69795DEA098ECDEC8 /* DENETIM-2026-07-26.md */,
+				72B4C507F7814E5FFB44CCCE /* adr */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
 		5C6700A6B48D517AFE8F9162 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +203,16 @@
 				709E293EA3174B1FDCB27CEF /* WorkoutModels.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		72B4C507F7814E5FFB44CCCE /* adr */ = {
+			isa = PBXGroup;
+			children = (
+				056CE63D9A0B3246C00F7053 /* 0001-dogrudan-openrouter-proxysiz.md */,
+				FCC42AB7F2C9806E2BB841BC /* 0002-whoop-istemci-bilgileri-keychain.md */,
+				99F9435F206AC23D20801FC0 /* 0003-telemetrisiz-calisma.md */,
+			);
+			path = adr;
 			sourceTree = "<group>";
 		};
 		7E7C5E860CBC15F5F2567AFE /* Dashboard */ = {
@@ -231,6 +253,7 @@
 				8B1A6FB5657E2DC670E967A2 /* App */,
 				AB01658A9694E2D0DAA10B44 /* Config */,
 				7E7C5E860CBC15F5F2567AFE /* Dashboard */,
+				56E645864CE0CF186BB96EA2 /* docs */,
 				3AA56F36DE720AAB70592FF6 /* HealthKit */,
 				DFC584F0A13BAF7CB6F97ADA /* Notifications */,
 				C6DB1154ACE6CC472ACD36F6 /* Plan */,
@@ -248,8 +271,6 @@
 				93648D55C832526A3A104E78 /* LabelStore.swift */,
 				C97573381324BF7A0507F9E9 /* PlanStore.swift */,
 				C3E94F938B15ADF63276F079 /* ProfileStore.swift */,
-				FD11DC0D7EC3BBADBA16FDAA /* Secrets.example.swift */,
-				94FE5CE8A1796EA06F984DFE /* Secrets.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -371,7 +392,6 @@
 				71FF939B3BB67AC797471849 /* RootView.swift in Sources */,
 				D5B09855E0A04895C531882B /* RuleEditorView.swift in Sources */,
 				EB876A3121336F19304A0A2F /* Rules.swift in Sources */,
-				93F3B306CB0CAE5CAFA1616C /* Secrets.swift in Sources */,
 				FF53C40524FA12F657A52B4F /* SettingsView.swift in Sources */,
 				EC38CD9AD9674B38D2182547 /* TDEEDetailView.swift in Sources */,
 				93B6568F2CC6A8DEF0A0C9E8 /* TodayView.swift in Sources */,
@@ -391,15 +411,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Bearing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 77J92PA5Q9;
 				INFOPLIST_FILE = Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BearingApp;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,15 +487,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Bearing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 77J92PA5Q9;
 				INFOPLIST_FILE = Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BearingApp;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -13,13 +13,19 @@ final class WhoopAuth: NSObject, ObservableObject {
     private let tokenURL = "https://api.prod.whoop.com/oauth/oauth2/token"
     private let scopes = "read:recovery read:cycles read:sleep read:workout read:profile read:body_measurement offline"
 
-    // Secrets.swift'ten (kopyala: Secrets.example.swift). Kişisel kullanımda Keychain'de tutmak daha iyi.
-    private var clientID: String { WhoopSecrets.clientID }
-    private var clientSecret: String { WhoopSecrets.clientSecret }
-    private var redirectURI: String { WhoopSecrets.redirectURI }   // ör. bearing://whoop-callback
+    // Kimlik bilgileri Keychain'de yaşar (Ayarlar → Veri kaynakları'ndan bir kez girilir).
+    // Repo'da ve binary'de sır YOK — Xcode Cloud dahil her ortam sırsız derlenir (docs/adr/0002).
+    // redirectURI sır değildir; Info.plist'teki URL scheme ile eşleşen sabittir.
+    private let redirectURI = "bearing://whoop-callback"
+    private static let clientIDKey = "whoop_client_id"
+    private static let clientSecretKey = "whoop_client_secret"
+
+    private var clientID: String { Keychain.read(Self.clientIDKey) ?? "" }
+    private var clientSecret: String { Keychain.read(Self.clientSecretKey) ?? "" }
 
     @Published var isConnected = false
     @Published var authError: String?
+    @Published var hasCredentials = false
 
     private var codeVerifier: String = ""
     private let keychainKey = "whoop_token"
@@ -27,10 +33,35 @@ final class WhoopAuth: NSObject, ObservableObject {
     override init() {
         super.init()
         isConnected = (loadToken() != nil)
+        hasCredentials = !clientID.isEmpty && !clientSecret.isEmpty
     }
+
+    // MARK: Kimlik bilgileri (Ayarlar ekranı kullanır)
+    func saveCredentials(clientID id: String, clientSecret secret: String) {
+        let id = id.trimmingCharacters(in: .whitespacesAndNewlines)
+        let secret = secret.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !id.isEmpty, !secret.isEmpty else { return }
+        Keychain.save(id, key: Self.clientIDKey)
+        Keychain.save(secret, key: Self.clientSecretKey)
+        hasCredentials = true
+        authError = nil
+    }
+
+    func clearCredentials() {
+        Keychain.delete(Self.clientIDKey)
+        Keychain.delete(Self.clientSecretKey)
+        hasCredentials = false
+    }
+
+    /// Ayarlar'da maskesiz gösterim İSTENMEZ; yalnız id ön izlenir (sır değil).
+    var storedClientID: String { clientID }
 
     // MARK: Bağlan (kullanıcı akışı)
     func connect() {
+        guard hasCredentials else {
+            authError = "Whoop istemci bilgileri eksik — Ayarlar → Veri kaynakları'ndan client ID/secret gir."
+            return
+        }
         codeVerifier = Self.randomString(64)
         let challenge = Self.codeChallenge(for: codeVerifier)
         var comp = URLComponents(string: authURL)!
@@ -89,6 +120,10 @@ final class WhoopAuth: NSObject, ObservableObject {
         guard let refresh = token.refreshToken else {
             authError = "Oturum süresi doldu — Whoop'a yeniden bağlan."
             isConnected = false
+            return nil
+        }
+        guard hasCredentials else {
+            authError = "Whoop istemci bilgileri eksik — Ayarlar → Veri kaynakları'ndan client ID/secret gir."
             return nil
         }
         var req = URLRequest(url: URL(string: tokenURL)!)
