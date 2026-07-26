@@ -11,6 +11,7 @@ struct DashboardView: View {
     @EnvironmentObject var aiMemory: AIMemory
     @EnvironmentObject var aiClient: OpenRouterClient
     @StateObject private var whoopAuth = WhoopAuth.shared
+    @Environment(\.openURL) private var openURL
 
     @State private var showPicker = false
     @State private var showLabel = false
@@ -81,6 +82,7 @@ struct DashboardView: View {
             ScrollView {
                 VStack(spacing: DS.Space.lg) {
                     header
+                    healthAccessCard
                     engineCards
                     SectionHeader(title: "Metrikler", actionTitle: "Düzenle") { showPicker = true }
                     let targets = resolvedTargets
@@ -193,6 +195,53 @@ struct DashboardView: View {
                     .environmentObject(profileStore)
             }
             .overlay { if store.loading { ProgressView().scaleEffect(1.2) } }
+        }
+    }
+
+    /// Yenileme bitti ama etkin HealthKit metriklerinin HEPSİ boşsa büyük olasılıkla
+    /// okuma izni verilmemiştir (iOS okuma reddini API'yle söylemez — tek sinyal budur).
+    private var healthKitSilent: Bool {
+        guard store.lastUpdated != nil else { return false }
+        let hkIds = config.enabledMetrics.filter { $0.source == .healthKit }.map(\.id)
+        guard !hkIds.isEmpty else { return false }
+        return hkIds.allSatisfy { (store.series[$0] ?? []).isEmpty }
+    }
+
+    /// İzin reddi / veri gelmiyor yönlendirmesi — sessiz "—" durumuna son (DENETIM F5)
+    @ViewBuilder private var healthAccessCard: some View {
+        if let err = store.health.errorText {
+            VStack(alignment: .leading, spacing: DS.Space.sm) {
+                HStack(spacing: DS.Space.sm) {
+                    Image(systemName: "heart.text.square")
+                        .foregroundStyle(DS.Status.attention)
+                    Text("Sağlık verisine erişilemiyor")
+                        .font(DS.Font.heading).foregroundStyle(DS.Text.primary)
+                }
+                Text(err).font(DS.Font.secondary).foregroundStyle(DS.Text.secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .cardSurface()
+        } else if healthKitSilent {
+            VStack(alignment: .leading, spacing: DS.Space.sm) {
+                HStack(spacing: DS.Space.sm) {
+                    Image(systemName: "heart.text.square")
+                        .foregroundStyle(DS.Status.attention)
+                    Text("Sağlık verisi gelmiyor")
+                        .font(DS.Font.heading).foregroundStyle(DS.Text.primary)
+                }
+                Text("Okuma izni verilmemiş veya kaynaklar Apple Health'e yazmıyor olabilir. Sağlık uygulamasında Paylaşım → Uygulamalar → Bearing altında okuma izinlerini aç; Cronometer/Whoop/tartının Health'e bağlı olduğunu doğrula.")
+                    .font(DS.Font.secondary).foregroundStyle(DS.Text.secondary)
+                Button {
+                    if let url = URL(string: "x-apple-health://") { openURL(url) }
+                } label: {
+                    Label("Sağlık uygulamasını aç", systemImage: "arrow.up.forward.app")
+                        .font(DS.Font.secondary)
+                }
+                .buttonStyle(.bordered)
+                .tint(DS.Surface.accent)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .cardSurface()
         }
     }
 

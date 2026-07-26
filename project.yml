@@ -34,12 +34,13 @@ targets:
         buildPhase: none
       - path: docs
         buildPhase: none
+      - path: PrivacyInfo.xcprivacy
+        buildPhase: resources
     info:
       path: Info.plist
       properties:
         CFBundleDisplayName: Bearing
         NSHealthShareUsageDescription: "Aktivite, kalp, beslenme, uyku ve vücut ölçümü verilerini tek panelde göstermek için Sağlık verilerinize okuma erişimi gerekiyor."
-        NSHealthUpdateUsageDescription: "Gerekli olduğunda (ör. veri düzeltme) Sağlık uygulamasına veri yazabilmek için izin istenir."
         CFBundleURLTypes:
           - CFBundleURLName: whoop
             CFBundleURLSchemes:

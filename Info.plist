@@ -35,8 +35,6 @@
 	<false/>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Aktivite, kalp, beslenme, uyku ve vücut ölçümü verilerini tek panelde göstermek için Sağlık verilerinize okuma erişimi gerekiyor.</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Gerekli olduğunda (ör. veri düzeltme) Sağlık uygulamasına veri yazabilmek için izin istenir.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 </dict>
