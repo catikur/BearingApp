@@ -1,7 +1,869 @@
 {
   "sourceLanguage" : "tr",
   "strings" : {
+    "… ve %@ hata daha" : {
 
+    },
+    "· %@" : {
+
+    },
+    "\"İyi\" skor eşiği" : {
+
+    },
+    "\"Tümünü tara\" tüm katalog metriklerini Apple Health'ten çeker — biraz sürebilir." : {
+
+    },
+    "/ %@" : {
+
+    },
+    "/ 100" : {
+
+    },
+    "%@" : {
+
+    },
+    "%@ · %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "%@ · %@ hareket · ~%@ dk" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$@ hareket · ~%3$@ dk"
+          }
+        }
+      }
+    },
+    "%@ · n=%@ · %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · n=%2$@ · %3$@"
+          }
+        }
+      }
+    },
+    "%@ / %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ / %2$@"
+          }
+        }
+      }
+    },
+    "%@ / %@ tamamlandı" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ / %2$@ tamamlandı"
+          }
+        }
+      }
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ − (%@ kg/gün × %@) = %@ kcal" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ − (%2$@ kg/gün × %3$@) = %4$@ kcal"
+          }
+        }
+      }
+    },
+    "%@ arttığında, %@ %@ %@." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ arttığında, %2$@ %3$@ %4$@."
+          }
+        }
+      }
+    },
+    "%@ aynı anda kötü yönde sapmış (%@/%@)." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ aynı anda kötü yönde sapmış (%2$@/%3$@)."
+          }
+        }
+      }
+    },
+    "%@ çift filtre nedeniyle gizlendi — neden?" : {
+
+    },
+    "%@ engelleyici uyarı var — yine de uygulayabilirsin, karar senin." : {
+
+    },
+    "%@ etkin" : {
+
+    },
+    "%@ gün" : {
+
+    },
+    "%@ gün · %%%@ uyum" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ gün · %%%2$@ uyum"
+          }
+        }
+      }
+    },
+    "%@ kcal" : {
+
+    },
+    "%@ kg" : {
+
+    },
+    "%@ kg × %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ kg × %2$@"
+          }
+        }
+      }
+    },
+    "%@ kg/hafta hedefi için günlük alım" : {
+
+    },
+    "%@ kural değerlendirildi · son %@ gün" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ kural değerlendirildi · son %2$@ gün"
+          }
+        }
+      }
+    },
+    "%@ metrik birlikte sapmış" : {
+
+    },
+    "%@ not" : {
+
+    },
+    "%@ sapma" : {
+
+    },
+    "%@ tamamlandı" : {
+
+    },
+    "%@ token" : {
+
+    },
+    "%@: %@ — %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$@ — %3$@"
+          }
+        }
+      }
+    },
+    "%@: dikkat (%%%@)" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: dikkat (%%%2$@)"
+          }
+        }
+      }
+    },
+    "%@: etiketli %@ · diğer %@ (n=%@)" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: etiketli %2$@ · diğer %3$@ (n=%4$@)"
+          }
+        }
+      }
+    },
+    "%@/%@ %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@/%2$@ %3$@"
+          }
+        }
+      }
+    },
+    "%@/%@ seçili" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@/%2$@ seçili"
+          }
+        }
+      }
+    },
+    "%@%%" : {
+
+    },
+    "%@×%@ · %@ sn dinlenme" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@×%2$@ · %3$@ sn dinlenme"
+          }
+        }
+      }
+    },
+    "%%%@" : {
+
+    },
+    "• %@ — %@×%@%@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "• %1$@ — %2$@×%3$@%4$@"
+          }
+        }
+      }
+    },
+    "1 yıl" : {
+
+    },
+    "2 gün sonra" : {
+
+    },
+    "2 yıl" : {
+
+    },
+    "7 gün" : {
+
+    },
+    "30 gün" : {
+
+    },
+    "90 gün" : {
+
+    },
+    "180 gün" : {
+
+    },
+    "Açık faz" : {
+
+    },
+    "Adaptif TDEE" : {
+
+    },
+    "ağırlık %@" : {
+
+    },
+    "Anahtar Keychain'de saklanır, UserDefaults'a veya yedeğe yazılmaz." : {
+
+    },
+    "Antrenman değişiklikleri" : {
+
+    },
+    "Ayarlar → Yapay Zekâ bölümünden OpenRouter anahtarını ekleyip katmanı aç. Uygulama bu katman olmadan da tam çalışır." : {
+
+    },
+    "Aynı gün" : {
+
+    },
+    "Bağlı" : {
+
+    },
+    "Baseline & sapma" : {
+
+    },
+    "baseline %@ ± %@ · n=%@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "baseline %1$@ ± %2$@ · n=%3$@"
+          }
+        }
+      }
+    },
+    "Başlangıç kilosu" : {
+
+    },
+    "Başlangıç kilosu boşsa serideki ilk ölçüm kullanılır. İlerleme yüzdesi buna göre hesaplanır." : {
+
+    },
+    "Bildirim izni yok — Ayarlar → Bildirimler" : {
+
+    },
+    "Bileşik sinyal metrikleri" : {
+
+    },
+    "Bir tarihe göreli" : {
+
+    },
+    "Biri diğerinin parçası veya doğrudan türevi. Örneğin derin uyku toplam uykunun içinde; ikisi zaten birlikte hareket eder." : {
+
+    },
+    "Bu aralığa düşen bildirimler kurulmaz. Gece yarısını aşan aralık desteklenir." : {
+
+    },
+    "Bu asistan hesap yapmaz. Uygulamanın hesapladığı sayıları okur ve yorumlar." : {
+
+    },
+    "Bu bir tahmin formülü değil: gerçekte ne yediğin ile kilonun gerçekte nasıl değiştiğinden geriye doğru hesaplandı." : {
+
+    },
+    "Bu metin her istekte modele ilk kural seti olarak gider." : {
+
+    },
+    "Bu ne anlama geliyor?" : {
+
+    },
+    "Bu not yapay zekâ katmanına da bağlam olarak gider." : {
+
+    },
+    "Bu örüntü klasik olarak enfeksiyon, aşırı yüklenme veya toparlanma borcuyla birlikte görülür — tanı değil, dikkat sinyalidir. Bugün yükü hafifletmeyi değerlendirebilirsin." : {
+
+    },
+    "Bu talimat, \"%@\" görevinde modele verilir. Deterministik anlık görüntü ve çıktı şeması otomatik eklenir." : {
+
+    },
+    "bugün %@ %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "bugün %1$@ %2$@"
+          }
+        }
+      }
+    },
+    "Bugün bloğu metrikleri" : {
+
+    },
+    "Bugün kullanılan" : {
+
+    },
+    "Buradaki bilgiler yapay zekâ katmanına bağlam olarak gider. Uygulama bunları ölçemez — sen yazarsın. Boş bırakırsan gönderilmez." : {
+
+    },
+    "Bütçe dolunca istek atılmaz; sayaç her gün sıfırlanır. 0 = sınırsız. İstekler yalnızca veri toplamayan sağlayıcılara yönlendirilir (zero-retention)." : {
+
+    },
+    "Çekiliyor…" : {
+
+    },
+    "değiştirilmiş" : {
+
+    },
+    "Diğer tarama parametreleri" : {
+
+    },
+    "Dinlenme: %@" : {
+
+    },
+    "Durum — yüksek doygunluk, nadir" : {
+
+    },
+    "Düşük sıcaklık = daha tutarlı, daha az yaratıcı yorum. Sayısal işler için 0.2–0.4 önerilir." : {
+
+    },
+    "Elle karşılaştır" : {
+
+    },
+    "EMA yarı ömrü" : {
+
+    },
+    "Ertesi gün" : {
+
+    },
+    "Eşiği, pencereyi ve izlenecek metrikleri Ayarlar → Motor Parametreleri'nden değiştirebilirsin." : {
+
+    },
+    "Eşik düşük → daha çok uyarı, daha çok yanlış alarm. 1.5 makul bir başlangıç; 2.0 daha seçici." : {
+
+    },
+    "Eşik: |z| ≥ %@ → sapma sayılır. Yönü metriğin \"iyi tarafı\"na göre değerlendirilir (ör. HRV düşerse kötü, dinlenme nabzı yükselirse kötü)." : {
+
+    },
+    "Etiket sıklığı haftalık değerlendirilir (gün/hafta)." : {
+
+    },
+    "Etiketler" : {
+
+    },
+    "Etiketler grafiklerde işaretçi olarak görünür ve içgörü hesaplarına katılır (ör. alkol → HRV). Veri cihazında kalır." : {
+
+    },
+    "Etiketlerin etkisi" : {
+
+    },
+    "etiketli %@ (n%@) · diğer %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "etiketli %1$@ (n%2$@) · diğer %3$@"
+          }
+        }
+      }
+    },
+    "Etiketli gün ortalaması ile diğer günlerin ortalaması. Düşük örneklemde (n küçük) yalnızca fikir verir — nedensellik değil." : {
+
+    },
+    "Etiketli günlerin etkisi" : {
+
+    },
+    "F%@" : {
+
+    },
+    "Faz %@" : {
+
+    },
+    "Faz %@ açılabilir — yeni bir değişken eklemeye hazırsın." : {
+
+    },
+    "Faz 1 hemen başlar. Üst fazlar, önceki faz yeterince sürdürülünce açılır (tek değişken kuralı)." : {
+
+    },
+    "Faz kuralı" : {
+
+    },
+    "Filtre 1 — İkizler" : {
+
+    },
+    "Filtre 2 — Aileler" : {
+
+    },
+    "Gereken uyum" : {
+
+    },
+    "Girdiler" : {
+
+    },
+    "Gizlenen aileler (%@)" : {
+
+    },
+    "Gizlenen ikiz çiftleri (%@)" : {
+
+    },
+    "Görev talimatları" : {
+
+    },
+    "Guardrail uyumu" : {
+
+    },
+    "Güncel: %@" : {
+
+    },
+    "Günlük alım" : {
+
+    },
+    "Günlük hedefler" : {
+
+    },
+    "Günlük tartı tuz, su ve glikojenle oynar; karar için düzleştirilmiş (EMA) değere bak." : {
+
+    },
+    "Günün özeti" : {
+
+    },
+    "Güven: %@" : {
+
+    },
+    "Hafıza" : {
+
+    },
+    "Haftanın günleri" : {
+
+    },
+    "Hangi metrik çiftlerinin listeden gizlendiğini görebilir ve filtreyi kapatabilirsin." : {
+
+    },
+    "Hedef" : {
+
+    },
+    "Hedef hız için öneri: %@ kcal" : {
+
+    },
+    "Hedef hızını ve kcal/kg katsayısını Ayarlar → Profil ve Motor Parametreleri'nden değiştirebilirsin." : {
+
+    },
+    "Hedef hızının altındasın — bu kendi başına sorun değil; sürdürülebilirlik hızdan önemli." : {
+
+    },
+    "Hedef RPE" : {
+
+    },
+    "Hedef: %@ %@ (%@)" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hedef: %1$@ %2$@ (%3$@)"
+          }
+        }
+      }
+    },
+    "Hedef: %@ kg" : {
+
+    },
+    "Hedefine göre" : {
+
+    },
+    "Hedeflerim özeti: her metriğin hedefi nereden geliyor (kuralın / TDEE / yedek). Bugün bloğu: Bugün sekmesinde ilerlemesi gösterilecek metrikler." : {
+
+    },
+    "Her görevin modele verdiği talimat. Beslenme planı ve antrenman ayarı görevlerinde model yapılandırılmış öneri döndürür; öneri plana yazılmadan önce motor doğrular ve sen onaylarsın." : {
+
+    },
+    "Her gün" : {
+
+    },
+    "Her metrik nüfus ortalamasıyla değil, senin son %@ gününle karşılaştırılıyor. z = bugünün baseline'dan kaç standart sapma uzakta olduğu." : {
+
+    },
+    "Hiçbir metrik için çözümlenmiş hedef yok. Kural ekle veya kalori için TDEE hesaplanmasını bekle." : {
+
+    },
+    "Hız, son %@ günün EMA eğiminden hesaplanır. Projeksiyon konisi veri gürültüsünden türeyen belirsizliği gösterir." : {
+
+    },
+    "İki kaynak aynı şeyi ölçüyor. Aralarındaki korelasyon cihaz uyumunu gösterir, sağlığın hakkında bir şey söylemez." : {
+
+    },
+    "İkincil açıklama metni burada yer alır." : {
+
+    },
+    "iOS uygulama başına en fazla 64 bekleyen bildirime izin verir. Bu yüzden yalnızca önümüzdeki günler kurulur ve uygulama her açıldığında tazelenir." : {
+
+    },
+    "İzlenecek metrikler" : {
+
+    },
+    "Kalori ve kilo verisi biriktikçe hesaplanacak." : {
+
+    },
+    "Kalori verisi yok." : {
+
+    },
+    "kapalı" : {
+
+    },
+    "Kapalıyken uygulama tamamen deterministik çalışır; hiçbir veri dışarı çıkmaz." : {
+
+    },
+    "Karşılaştırma: Mifflin-St Jeor bazal tahmini %@ kcal. O bir nüfus formülü; yukarıdaki senin ölçümün." : {
+
+    },
+    "Kart başlığı" : {
+
+    },
+    "Kaynak sırası: kuralın → TDEE → yedek katalog. Farklı bir hedef istiyorsan kural oluştur; yedek yalnızca kural yokken devreye girer." : {
+
+    },
+    "Kaynak: %@ · Son %@ gün" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Kaynak: %1$@ · Son %2$@ gün"
+          }
+        }
+      }
+    },
+    "kcal / gram" : {
+
+    },
+    "kcal/kg: 1 kg vücut ağırlığı değişiminin enerji karşılığı. Yaygın varsayım 7700; yağsız doku kaybı payı varsa düşürebilirsin." : {
+
+    },
+    "Kilit lab değerleri" : {
+
+    },
+    "Kilitli öğeler planda görünür ama bildirim üretmez." : {
+
+    },
+    "Kilo trendi" : {
+
+    },
+    "Kilo verisi bekleniyor." : {
+
+    },
+    "Kimlik — düşük doygunluk" : {
+
+    },
+    "Kişisel baseline bandı" : {
+
+    },
+    "Kırmızı maddeler, önerinin senin kurallarınla veya motorun hesabıyla çeliştiğini gösterir. Yine de uygulayabilirsin ama bilerek yap." : {
+
+    },
+    "Korelasyon keşfi" : {
+
+    },
+    "Kurallar tamamen senin. Sürükleyerek sırala, kaydırarak sil." : {
+
+    },
+    "Kuralları düzenle" : {
+
+    },
+    "Kurulu bildirim" : {
+
+    },
+    "Kurulum penceresi" : {
+
+    },
+    "Maliyet tavanı" : {
+
+    },
+    "Metrik çiftleri + etiket etkileri, aynı gün ve ertesi gün" : {
+
+    },
+    "Metrik ilişkileri" : {
+
+    },
+    "Mevcut hızla varış tahmini üretilemiyor (hız çok düşük veya ters yönde)." : {
+
+    },
+    "Min. log kapsaması" : {
+
+    },
+    "Minimum ortak gün düşerse daha çok bulgu çıkar ama küçük örneklem gürültüsü artar." : {
+
+    },
+    "Modelin kendi uyarıları" : {
+
+    },
+    "Modelin uyması gereken kurallar. Varsayılan: hesap yapma, sayı uydurma, tanı koyma, ilaç dozu verme. Repo sürümü: docs/prompts/system-prompt-v1.md — \"değiştirilmiş\" rozeti oradan sapıldığını gösterir; prompt değişikliği eval koşusu ister." : {
+
+    },
+    "Motor doğrulaması" : {
+
+    },
+    "motor: %@" : {
+
+    },
+    "N günde bir" : {
+
+    },
+    "Nasıl hesaplandı" : {
+
+    },
+    "Neyin neyi etkilediğini tara" : {
+
+    },
+    "Not" : {
+
+    },
+    "Not: Çok sayıda çift tarandığı için en üstteki birkaç ilişki şansa da denk gelebilir (çoklu karşılaştırma). Bir bulguyu ciddiye almadan önce elle karşılaştırmada aç, örneklem sayısına bak ve birkaç hafta izle." : {
+
+    },
+    "Notlar" : {
+
+    },
+    "Okuma izni verilmemiş veya kaynaklar Apple Health'e yazmıyor olabilir. Sağlık uygulamasında Paylaşım → Uygulamalar → Bearing altında okuma izinlerini aç; Cronometer/Whoop/tartının Health'e bağlı olduğunu doğrula." : {
+
+    },
+    "Önce tek seferlik bir öğe oluştur (ör. \"Kan testi\"), sonra buraya bağla." : {
+
+    },
+    "Öneri hazır — incele ve seçerek uygula" : {
+
+    },
+    "Önerilen hedefler" : {
+
+    },
+    "Önizleme" : {
+
+    },
+    "OpenRouter'daki herhangi bir model kimliği çalışır (ör. \"mistralai/mistral-large\")." : {
+
+    },
+    "Örnek kart" : {
+
+    },
+    "ort. %@" : {
+
+    },
+    "Otomatik keşif" : {
+
+    },
+    "Otomatik keşif yüzlerce metrik çiftini tarar. Bazı çiftler tanım gereği neredeyse %100 korele olur ve listenin tepesini doldurur — gerçek bulguları aşağı iter. Bu iki filtre onları gizler. İstersen kapat: hiçbir şey silinmez, sadece listeye geri gelir." : {
+
+    },
+    "Pencere hem Whoop hem HealthKit çekimine uygulanır; dashboard'daki 7/30/90 seçici yalnız görünümü daraltır. Whoop verisi sayfalanarak alınır, uzun pencerelerde çekim birkaç saniye sürebilir." : {
+
+    },
+    "Plan değişiklikleri" : {
+
+    },
+    "Plan ve hatırlatmalar" : {
+
+    },
+    "r = %@" : {
+
+    },
+    "Sabitlenen notlar (📌) her istekte önceliklidir. Kaydırarak silebilirsin." : {
+
+    },
+    "Sabitlenen notlar her istekte önce gönderilir; kalanlar en yeniden eskiye doğru limit kadar eklenir." : {
+
+    },
+    "Şablon değişikliği mevcut hareket listesinin yerine geçer — uygulamadan önce şablonu kontrol et." : {
+
+    },
+    "Sağlık verisi gelmiyor" : {
+
+    },
+    "Sağlık verisine erişilemiyor" : {
+
+    },
+    "Sapma eşiği (z)" : {
+
+    },
+    "Seans başlat · %@ hareket" : {
+
+    },
+    "Seri: %@ gün" : {
+
+    },
+    "Sessiz saatler" : {
+
+    },
+    "Set %@" : {
+
+    },
+    "Seti Kaydet" : {
+
+    },
+    "Sistem izni" : {
+
+    },
+    "Sıcaklık" : {
+
+    },
+    "Skor = kuralların ağırlıklı uyum ortalaması. Ağırlığı, eşiği ve pencereyi sen belirlersin; hesap tamamen deterministiktir." : {
+
+    },
+    "Son Whoop çekimi: %@" : {
+
+    },
+    "Tahmini varış:" : {
+
+    },
+    "Taranıyor…" : {
+
+    },
+    "TDEE" : {
+
+    },
+    "TDEE = ortalama alım − (kilo değişimi × kcal/kg)" : {
+
+    },
+    "Tek sefer" : {
+
+    },
+    "Toplam hacim" : {
+
+    },
+    "Trend takibi için değil — yapay zekânın kararlarını bağlamlandırması için. Ör. \"Apo B · 138 mg/dL · Nis 2025\"." : {
+
+    },
+    "Tüm metrikler normal aralıkta" : {
+
+    },
+    "Üst sınır" : {
+
+    },
+    "Uyum yüzdesi, seçili pencerede planlanan öğelerin kaçını tamamladığından hesaplanır." : {
+
+    },
+    "Veri kaynakları" : {
+
+    },
+    "veri yok" : {
+
+    },
+    "Whoop bağlı değil — Recovery/Strain için bağlan" : {
+
+    },
+    "Whoop istemci bilgileri" : {
+
+    },
+    "X: %@ (%@)" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "X: %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "Y: %@ (%@)" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Y: %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "Yağ 9, protein ve karbonhidrat 4 kcal/g." : {
+
+    },
+    "Yapay zekâ yalnızca yorum yapar. Bütün sayılar bu cihazda deterministik olarak hesaplanır ve modele hazır verilir." : {
+
+    },
+    "Yarı ömür kısa → trend daha çevik ama gürültülü. Uzun → daha kararlı ama geç tepki verir." : {
+
+    },
+    "Yeni bir değişken (ör. yeni suplement) ancak mevcut faz bu süre ve uyum eşiğini geçince açılır. Böylece neyin işe yaradığını ayırt edebilirsin." : {
+
+    },
+    "Yeni öğeler bildirimi KAPALI gelir. Planda görüp saatini ayarladıktan sonra açarsın." : {
+
+    },
+    "Yok" : {
+
+    },
+    "Yüklü tüm metrikleri ve etiketleri tarayıp en güçlü ilişkileri sıralar. Aynı gün ve ertesi gün etkileri ayrı değerlendirilir." : {
+
+    },
+    "Yüksek ağırlık, bu kuralın toplam uyum skorunu daha çok etkilemesi demektir." : {
+
+    },
+    "z = %@" : {
+
+    }
   },
   "version" : "1.0"
 }
