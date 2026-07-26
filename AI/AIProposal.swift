@@ -18,12 +18,12 @@ struct AIProposal: Codable {
     }
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
-        summary        = (try? c.decodeIfPresent(String.self, forKey: .summary)) as? String ?? ""
-        rationale      = (try? c.decodeIfPresent(String.self, forKey: .rationale)) as? String ?? ""
+        summary        = (try? c.decodeIfPresent(String.self, forKey: .summary)) ?? ""
+        rationale      = (try? c.decodeIfPresent(String.self, forKey: .rationale)) ?? ""
         targets        = try? c.decodeIfPresent(ProposedTargets.self, forKey: .targets)
-        items          = (try? c.decodeIfPresent([ProposedItem].self, forKey: .items)) as? [ProposedItem] ?? []
-        workoutChanges = (try? c.decodeIfPresent([ProposedWorkout].self, forKey: .workoutChanges)) as? [ProposedWorkout] ?? []
-        warnings       = (try? c.decodeIfPresent([String].self, forKey: .warnings)) as? [String] ?? []
+        items          = (try? c.decodeIfPresent([ProposedItem].self, forKey: .items)) ?? []
+        workoutChanges = (try? c.decodeIfPresent([ProposedWorkout].self, forKey: .workoutChanges)) ?? []
+        warnings       = (try? c.decodeIfPresent([String].self, forKey: .warnings)) ?? []
     }
 }
 
@@ -58,7 +58,7 @@ struct ProposedItem: Codable, Identifiable {
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         func str(_ k: CodingKeys, _ d: String) -> String {
-            ((try? c.decodeIfPresent(String.self, forKey: k)) as? String) ?? d
+            (try? c.decodeIfPresent(String.self, forKey: k)) ?? d
         }
         action       = str(.action, "add")
         title        = str(.title, "")
@@ -69,7 +69,7 @@ struct ProposedItem: Codable, Identifiable {
         weekdays     = try? c.decodeIfPresent([Int].self, forKey: .weekdays)
         everyN       = try? c.decodeIfPresent(Int.self, forKey: .everyN)
         phase        = try? c.decodeIfPresent(Int.self, forKey: .phase)
-        times        = ((try? c.decodeIfPresent([String].self, forKey: .times)) as? [String]) ?? []
+        times        = (try? c.decodeIfPresent([String].self, forKey: .times)) ?? []
     }
 
     var planCategory: PlanCategory { PlanCategory(rawValue: category) ?? .meal }
@@ -116,10 +116,10 @@ struct ProposedWorkout: Codable, Identifiable {
     enum CodingKeys: String, CodingKey { case templateName, action, exercises, note }
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
-        templateName = ((try? c.decodeIfPresent(String.self, forKey: .templateName)) as? String) ?? ""
-        action       = ((try? c.decodeIfPresent(String.self, forKey: .action)) as? String) ?? "update"
-        note         = ((try? c.decodeIfPresent(String.self, forKey: .note)) as? String) ?? ""
-        exercises    = ((try? c.decodeIfPresent([ProposedExercise].self, forKey: .exercises)) as? [ProposedExercise]) ?? []
+        templateName = (try? c.decodeIfPresent(String.self, forKey: .templateName)) ?? ""
+        action       = (try? c.decodeIfPresent(String.self, forKey: .action)) ?? "update"
+        note         = (try? c.decodeIfPresent(String.self, forKey: .note)) ?? ""
+        exercises    = (try? c.decodeIfPresent([ProposedExercise].self, forKey: .exercises)) ?? []
     }
 }
 
@@ -135,7 +135,7 @@ struct ProposedExercise: Codable {
     enum CodingKeys: String, CodingKey { case name, sets, reps, targetRPE, note }
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
-        name      = ((try? c.decodeIfPresent(String.self, forKey: .name)) as? String) ?? ""
+        name      = (try? c.decodeIfPresent(String.self, forKey: .name)) ?? ""
         sets      = try? c.decodeIfPresent(Int.self, forKey: .sets)
         reps      = try? c.decodeIfPresent(String.self, forKey: .reps)
         targetRPE = try? c.decodeIfPresent(Double.self, forKey: .targetRPE)

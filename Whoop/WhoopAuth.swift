@@ -2,6 +2,7 @@ import Foundation
 import AuthenticationServices
 import CryptoKit
 import Security
+import UIKit
 
 /// WHOOP OAuth 2.0 (authorization code + PKCE). Rotating refresh token'ı Keychain'de saklar.
 @MainActor
@@ -232,6 +233,15 @@ final class WhoopAuth: NSObject, ObservableObject {
 
 extension WhoopAuth: ASWebAuthenticationPresentationContextProviding {
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        ASPresentationAnchor()
+        // iOS 26'da sahnesiz UIWindow init'leri (init()/init(frame:)) deprecated.
+        // Aktif sahnenin mevcut penceresini döndür, yoksa sahneye bağlı yeni pencere kur.
+        let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+        guard let scene = scenes.first(where: { $0.activationState == .foregroundActive }) ?? scenes.first else {
+            // Web auth yalnız ön planda bir sahne varken sunulur; buraya pratikte gelinmez.
+            preconditionFailure("Auth penceresi için aktif UIWindowScene yok")
+        }
+        return scene.windows.first(where: \.isKeyWindow)
+            ?? scene.windows.first
+            ?? UIWindow(windowScene: scene)
     }
 }
