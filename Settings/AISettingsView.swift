@@ -69,16 +69,34 @@ struct AISettingsView: View {
                 }
 
                 Section {
+                    Stepper(config.dailyTokenBudget == 0
+                            ? "Günlük bütçe: sınırsız"
+                            : "Günlük bütçe: \(DS.integer(config.dailyTokenBudget)) token",
+                            value: $config.dailyTokenBudget, in: 0...200_000, step: 5_000)
+                    HStack {
+                        Text("Bugün kullanılan")
+                        Spacer()
+                        Text("\(DS.integer(config.usedTokensToday)) token")
+                            .foregroundStyle(config.budgetExhausted ? DS.Status.attention : .secondary)
+                            .monospacedDigit()
+                    }
+                } header: { Text("Maliyet tavanı") }
+                footer: { Text("Bütçe dolunca istek atılmaz; sayaç her gün sıfırlanır. 0 = sınırsız. İstekler yalnızca veri toplamayan sağlayıcılara yönlendirilir (zero-retention).") }
+
+                Section {
                     Button { showPrompt = true } label: {
                         HStack {
                             Label("Sistem promptu (ana sınırlayıcı)", systemImage: "text.badge.checkmark")
                             Spacer()
+                            if config.systemPromptModified {
+                                Text("değiştirilmiş").font(.caption2).foregroundStyle(DS.Status.attention)
+                            }
                             Image(systemName: "chevron.right").font(.caption2).foregroundStyle(.tertiary)
                         }
                     }
                     .buttonStyle(.plain)
                 } footer: {
-                    Text("Modelin uyması gereken kurallar. Varsayılan: hesap yapma, sayı uydurma, tanı koyma, ilaç dozu verme.")
+                    Text("Modelin uyması gereken kurallar. Varsayılan: hesap yapma, sayı uydurma, tanı koyma, ilaç dozu verme. Repo sürümü: docs/prompts/system-prompt-v1.md — \"değiştirilmiş\" rozeti oradan sapıldığını gösterir; prompt değişikliği eval koşusu ister.")
                 }
 
                 Section {
@@ -87,8 +105,8 @@ struct AISettingsView: View {
                             HStack {
                                 Label(t.label, systemImage: t.icon)
                                 Spacer()
-                                if config.taskInstructions[t.rawValue] != nil {
-                                    Text("özel").font(.caption2).foregroundStyle(.orange)
+                                if config.isInstructionModified(for: t) {
+                                    Text("değiştirilmiş").font(.caption2).foregroundStyle(DS.Status.attention)
                                 }
                                 Image(systemName: "chevron.right").font(.caption2).foregroundStyle(.tertiary)
                             }

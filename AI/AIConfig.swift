@@ -79,6 +79,11 @@ final class AIConfig: ObservableObject {
     @Published var systemPrompt: String   { didSet { UserDefaults.standard.set(systemPrompt, forKey: "ai_sysprompt") } }
     @Published var memoryLimit: Int       { didSet { UserDefaults.standard.set(memoryLimit, forKey: "ai_memlimit") } }
 
+    /// Günlük token bütçesi (maliyet tavanı, anayasa §8.2). 0 = sınırsız.
+    @Published var dailyTokenBudget: Int  { didSet { UserDefaults.standard.set(dailyTokenBudget, forKey: "ai_daily_budget") } }
+    /// Bugün harcanan tokenlar (UI gösterimi; gün değişince sıfırlanır)
+    @Published var usedTokensToday: Int = 0
+
     // Bağlama neyin girdiğini kullanıcı seçer
     @Published var sendProfile: Bool      { didSet { UserDefaults.standard.set(sendProfile, forKey: "ai_send_profile") } }
     @Published var sendEngines: Bool      { didSet { UserDefaults.standard.set(sendEngines, forKey: "ai_send_engines") } }
@@ -127,8 +132,45 @@ final class AIConfig: ObservableObject {
         } else {
             taskInstructions = [:]
         }
+        dailyTokenBudget = d.object(forKey: "ai_daily_budget") as? Int ?? 30_000
         hasKey = Keychain.read(keyName) != nil
+        usedTokensToday = todayUsage()
     }
+
+    // MARK: Günlük kullanım sayacı (maliyet tavanı)
+
+    private static let usageDayKey = "ai_usage_day"
+    private static let usageTokKey = "ai_usage_tokens"
+
+    private func dayStamp(_ date: Date = Date()) -> String {
+        let c = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        return "\(c.year ?? 0)-\(c.month ?? 0)-\(c.day ?? 0)"
+    }
+
+    /// Bugünün toplam token kullanımı; gün değiştiyse sayaç sıfırlanır.
+    func todayUsage() -> Int {
+        let d = UserDefaults.standard
+        guard d.string(forKey: Self.usageDayKey) == dayStamp() else { return 0 }
+        return d.integer(forKey: Self.usageTokKey)
+    }
+
+    func addUsage(_ tokens: Int) {
+        guard tokens > 0 else { return }
+        let d = UserDefaults.standard
+        let total = todayUsage() + tokens
+        d.set(dayStamp(), forKey: Self.usageDayKey)
+        d.set(total, forKey: Self.usageTokKey)
+        usedTokensToday = total
+    }
+
+    /// Bütçe doldu mu? (0 bütçe = sınırsız)
+    var budgetExhausted: Bool {
+        dailyTokenBudget > 0 && todayUsage() >= dailyTokenBudget
+    }
+
+    /// Varsayılan sistem promptundan sapılmış mı? (docs/prompts v1 rozeti)
+    var systemPromptModified: Bool { systemPrompt != AIConfig.defaultSystemPrompt }
+    func isInstructionModified(for task: AITask) -> Bool { taskInstructions[task.rawValue] != nil }
 
     func instruction(for task: AITask) -> String {
         taskInstructions[task.rawValue] ?? task.defaultInstruction

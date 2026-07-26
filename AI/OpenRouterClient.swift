@@ -200,6 +200,7 @@ final class OpenRouterClient: ObservableObject {
     @Published var parseError: String?
 
     private let endpoint = URL(string: "https://openrouter.ai/api/v1/chat/completions")!
+    private var currentTask: Task<Void, Never>?
 
     private struct ORMessage: Codable { let role: String; let content: String }
     private struct ORRequest: Codable {
@@ -207,11 +208,22 @@ final class OpenRouterClient: ObservableObject {
         let messages: [ORMessage]
         let temperature: Double
         let max_tokens: Int
+        let stream: Bool
+        let usage: UsageOpt            // akış sonunda kullanım bilgisi gelsin (maliyet sayacı)
+        let provider: ProviderPref     // zero-retention: veri toplamayan sağlayıcılara yönlen (§8.5)
+        struct UsageOpt: Codable { let include: Bool }
+        struct ProviderPref: Codable { let data_collection: String }
     }
-    private struct ORResponse: Codable {
-        struct Choice: Codable { let message: ORMessage }
+    /// SSE akış parçası: choices[].delta.content + (son parçada) usage
+    private struct ORStreamChunk: Codable {
+        struct Choice: Codable {
+            struct Delta: Codable { let content: String? }
+            let delta: Delta?
+        }
+        struct UsageInfo: Codable { let prompt_tokens: Int?; let completion_tokens: Int? }
         struct APIError: Codable { let message: String? }
         let choices: [Choice]?
+        let usage: UsageInfo?
         let error: APIError?
     }
 
@@ -220,14 +232,33 @@ final class OpenRouterClient: ObservableObject {
         lastProposal = nil; parseError = nil; lastRawProposal = ""
     }
 
+    /// Kullanıcı akışı durdurabilir (§8.3 — iptal her an mümkün). Kısmi metin korunur.
+    func cancel() { currentTask?.cancel() }
+
     func send(_ text: String,
               context: String,
               config: AIConfig,
               memory: AIMemory,
               task: AITask = .chat) async {
+        currentTask?.cancel()
+        let t = Task { await performSend(text, context: context, config: config, memory: memory, task: task) }
+        currentTask = t
+        await t.value
+    }
+
+    private func performSend(_ text: String,
+                             context: String,
+                             config: AIConfig,
+                             memory: AIMemory,
+                             task: AITask) async {
 
         guard let key = config.apiKey, !key.isEmpty else {
             lastError = "OpenRouter API anahtarı yok. Ayarlar → Yapay Zekâ bölümünden ekle."
+            return
+        }
+        // Maliyet tavanı (§8.2): bütçe dolduysa nazik sınır — istek atılmaz
+        if config.budgetExhausted {
+            lastError = "Günlük token bütçesi doldu (\(config.todayUsage()) / \(config.dailyTokenBudget)). Yarın sıfırlanır; gerekiyorsa Ayarlar → Yapay Zekâ'dan artır."
             return
         }
         lastContext = context
@@ -243,45 +274,96 @@ final class OpenRouterClient: ObservableObject {
         system += "\n\n" + context
 
         var payload: [ORMessage] = [ORMessage(role: "system", content: system)]
-        // Sohbet geçmişi (son 12 tur)
+        // Sohbet geçmişi (son 12 tur) — canlı doldurulacak boş asistan mesajı SONRA eklenir
         for m in messages.suffix(12) { payload.append(ORMessage(role: m.role, content: m.content)) }
 
         var req = URLRequest(url: endpoint)
         req.httpMethod = "POST"
+        req.timeoutInterval = 120
         req.setValue("Bearer \(key)", forHTTPHeaderField: "Authorization")
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
         req.setValue("bearing", forHTTPHeaderField: "X-Title")
         req.httpBody = try? JSONEncoder().encode(
             ORRequest(model: config.model, messages: payload,
-                      temperature: config.temperature, max_tokens: config.maxTokens))
+                      temperature: config.temperature, max_tokens: config.maxTokens,
+                      stream: true,
+                      usage: .init(include: true),
+                      provider: .init(data_collection: "deny")))
+
+        // Canlı dolacak asistan balonu (akış UI'ı)
+        messages.append(ChatMessage(role: "assistant", content: ""))
+        var acc = ""
+        var usageTokens = 0
+        var streamError: String?
 
         do {
-            let (data, resp) = try await URLSession.shared.data(for: req)
-            let decoded = try? JSONDecoder().decode(ORResponse.self, from: data)
-            if let msg = decoded?.error?.message {
-                lastError = "OpenRouter: \(msg)"; return
-            }
+            let (bytes, resp) = try await URLSession.shared.bytes(for: req)
             guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
-                lastError = "Sunucu hatası (\((resp as? HTTPURLResponse)?.statusCode ?? -1))"; return
+                var body = ""
+                for try await line in bytes.lines { body += line; if body.count > 400 { break } }
+                let msg = (try? JSONDecoder().decode(ORStreamChunk.self, from: Data(body.utf8)))?.error?.message
+                dropEmptyAssistantTail()
+                lastError = msg.map { "OpenRouter: \($0)" }
+                    ?? "Sunucu hatası (\((resp as? HTTPURLResponse)?.statusCode ?? -1))"
+                return
             }
-            guard let content = decoded?.choices?.first?.message.content else {
-                lastError = "Yanıt çözümlenemedi."; return
-            }
-            messages.append(ChatMessage(role: "assistant", content: content))
-            lastError = nil
-
-            // Yapılandırılmış görevlerde öneriyi ayrıştır — plana YAZILMAZ, onay bekler
-            if task.structured {
-                lastRawProposal = content
-                switch ProposalParser.parse(content) {
-                case .success(let p): lastProposal = p; parseError = nil
-                case .failure(let e): lastProposal = nil; parseError = e.message
+            for try await line in bytes.lines {
+                guard line.hasPrefix("data: ") else { continue }
+                let chunk = String(line.dropFirst(6))
+                if chunk == "[DONE]" { break }
+                guard let d = chunk.data(using: .utf8),
+                      let parsed = try? JSONDecoder().decode(ORStreamChunk.self, from: d) else { continue }
+                if let msg = parsed.error?.message { streamError = "OpenRouter: \(msg)"; break }
+                if let delta = parsed.choices?.first?.delta?.content, !delta.isEmpty {
+                    acc += delta
+                    messages[messages.count - 1].content = acc
                 }
-            } else {
-                lastProposal = nil; parseError = nil
+                if let u = parsed.usage {
+                    usageTokens = (u.prompt_tokens ?? 0) + (u.completion_tokens ?? 0)
+                }
             }
+        } catch is CancellationError {
+            // Kullanıcı durdurdu (§8.3): kısmi metin kalır, hata sayılmaz
+            if acc.isEmpty { dropEmptyAssistantTail() }
         } catch {
-            lastError = error.localizedDescription
+            if acc.isEmpty { dropEmptyAssistantTail() }
+            lastError = "Ağ hatası: \(error.localizedDescription)"
+            return
+        }
+
+        // Kullanım sayacı: sağlayıcı usage vermediyse (ör. iptal) kaba tahmin — ~4 karakter/token
+        config.addUsage(usageTokens > 0 ? usageTokens
+                                        : max(1, (system.count + text.count + acc.count) / 4))
+
+        if let e = streamError {
+            if acc.isEmpty { dropEmptyAssistantTail() }
+            lastError = e
+            return
+        }
+        if acc.isEmpty {
+            // Boş/yetersiz sonuç durumu (§8.3): dürüst mesaj + sonraki adım
+            dropEmptyAssistantTail()
+            lastError = "Model işe yarar bir yanıt üretemedi — soruyu daraltıp yeniden dene."
+            return
+        }
+        lastError = nil
+
+        // Yapılandırılmış görevlerde öneriyi ayrıştır — plana YAZILMAZ, onay bekler
+        if task.structured {
+            lastRawProposal = acc
+            switch ProposalParser.parse(acc) {
+            case .success(let p): lastProposal = p; parseError = nil
+            case .failure(let e): lastProposal = nil; parseError = e.message
+            }
+        } else {
+            lastProposal = nil; parseError = nil
+        }
+    }
+
+    /// Akış hiç içerik üretmeden bittiyse boş asistan balonunu kaldır
+    private func dropEmptyAssistantTail() {
+        if let last = messages.last, last.role == "assistant", last.content.isEmpty {
+            messages.removeLast()
         }
     }
 }

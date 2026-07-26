@@ -95,7 +95,9 @@ struct AIAssistantView: View {
                     if client.sending {
                         HStack(spacing: DS.Space.sm) {
                             ProgressView()
-                            Text("Yanıtlıyor…").font(DS.Font.caption).foregroundStyle(DS.Text.secondary)
+                            Text(client.messages.last?.role == "assistant" && !(client.messages.last?.content.isEmpty ?? true)
+                                 ? "Akıyor… (durdurabilirsin)" : "Yanıtlıyor…")
+                                .font(DS.Font.caption).foregroundStyle(DS.Text.secondary)
                         }
                     }
                     Color.clear.frame(height: 1).id("bottom")
@@ -163,10 +165,19 @@ struct AIAssistantView: View {
             TextField("Sorunu yaz…", text: $input, axis: .vertical)
                 .lineLimit(1...4)
                 .textFieldStyle(.roundedBorder)
-            Button { send(input) } label: {
-                Image(systemName: "arrow.up.circle.fill").font(.title2).foregroundStyle(DS.Surface.accent)
+            if client.sending {
+                // Akış her an durdurulabilir (§8.3); kısmi yanıt ekranda kalır
+                Button { client.cancel() } label: {
+                    Image(systemName: "stop.circle.fill").font(.title2).foregroundStyle(DS.Status.attention)
+                }
+                .accessibilityLabel("Yanıtı durdur")
+            } else {
+                Button { send(input) } label: {
+                    Image(systemName: "arrow.up.circle.fill").font(.title2).foregroundStyle(DS.Surface.accent)
+                }
+                .disabled(input.trimmingCharacters(in: .whitespaces).isEmpty)
+                .accessibilityLabel("Gönder")
             }
-            .disabled(input.trimmingCharacters(in: .whitespaces).isEmpty || client.sending)
         }
         .padding(DS.Space.md)
         .background(.bar)
