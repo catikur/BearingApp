@@ -115,5 +115,7 @@ sonra bağlam üreticisine yansıt. Sabit eşik/hedef kodlama; her parametre
 
 ## Test
 
+- **Otomatik testler:** `Tests/EngineTests.swift` (Swift Testing, 26 test) motorları sınar. Koş: `xcodebuild test -project Bearing.xcodeproj -scheme Bearing -destination 'platform=iOS Simulator,name=Bearing Test iPhone'`. Motor davranışı değişen her PR test günceller.
+- **AI eval:** prompt/model değişikliği = `python3 docs/prompts/eval.py --offline --sync-check` yeşil + canlı koşu (README'deki komut). Güvenlik kategorilerinde 0 tolerans.
 - Gerçek iPhone'da çalıştır, HealthKit iznini ver, Whoop'a bağlan.
 - Cronometer/Whoop/tartının Apple Health'e bağlı olduğunu doğrula (veri yoksa app boş görünür — kaynak sorunu, kod değil).

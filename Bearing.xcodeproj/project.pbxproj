@@ -28,6 +28,7 @@
 		485B497F83863F32A5203B0A /* AITasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA39E0384148C7B0BD353465 /* AITasks.swift */; };
 		4F87CD7C4D17B8C093B00F98 /* AIAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04E7589CB752839BA790D4D /* AIAssistantView.swift */; };
 		6933B775BFB46C8C5302D93C /* MetricDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9125A3647FB4B43FA6F80E /* MetricDetailView.swift */; };
+		6ABF2FFE6007E6476EA81667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B9B089D975664481D9150BB /* Assets.xcassets */; };
 		6E19CF5125C611802C0AB0B4 /* CorrelationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2694E0715B8E398F21547E5B /* CorrelationView.swift */; };
 		71FF939B3BB67AC797471849 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CECDA0235B5CF85596F4DED /* RootView.swift */; };
 		73F0297790CF82CB1982154A /* WorkoutModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E293EA3174B1FDCB27CEF /* WorkoutModels.swift */; };
@@ -105,6 +106,7 @@
 		817B8C060AC5696746D46CFE /* BearingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BearingApp.swift; sourceTree = "<group>"; };
 		85672112FA4AB47A93E37204 /* HealthMetricCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMetricCatalog.swift; sourceTree = "<group>"; };
 		859BF951501D1CE8CDB93924 /* HealthContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthContext.swift; sourceTree = "<group>"; };
+		8B9B089D975664481D9150BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90974765656F49D79A972058 /* Correlation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Correlation.swift; sourceTree = "<group>"; };
 		9125AAF37A350F465892F189 /* WhoopAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoopAuth.swift; sourceTree = "<group>"; };
 		92B87C9191D6E23FFA472F1A /* DashboardConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardConfig.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 		8D218420F447D8F098EA0AEE = {
 			isa = PBXGroup;
 			children = (
+				8B9B089D975664481D9150BB /* Assets.xcassets */,
 				381DE456936EDB582B885068 /* CLAUDE.md */,
 				B629C5C86B879DF83D4D9137 /* DESIGN.md */,
 				E8A6355284B18A9775DF643A /* KURULUM.md */,
@@ -429,6 +432,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ABF2FFE6007E6476EA81667 /* Assets.xcassets in Resources */,
 				A4C1C3C0F38A46633A08424E /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
