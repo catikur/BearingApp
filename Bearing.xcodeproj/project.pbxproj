@@ -27,6 +27,7 @@
 		408FE6D2DDBFD5E2E182414D /* WorkoutSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF30782C488C153596E48171 /* WorkoutSessionView.swift */; };
 		485B497F83863F32A5203B0A /* AITasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA39E0384148C7B0BD353465 /* AITasks.swift */; };
 		4F87CD7C4D17B8C093B00F98 /* AIAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04E7589CB752839BA790D4D /* AIAssistantView.swift */; };
+		5C2BB3CA8CC1D74B06F656F0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3F039F2788DF69D3DBCBEE4E /* Localizable.xcstrings */; };
 		6933B775BFB46C8C5302D93C /* MetricDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9125A3647FB4B43FA6F80E /* MetricDetailView.swift */; };
 		6ABF2FFE6007E6476EA81667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B9B089D975664481D9150BB /* Assets.xcassets */; };
 		6E19CF5125C611802C0AB0B4 /* CorrelationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2694E0715B8E398F21547E5B /* CorrelationView.swift */; };
@@ -90,6 +91,7 @@
 		33C32F019D2DB73D79295DD0 /* bad_diagnosis.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bad_diagnosis.txt; sourceTree = "<group>"; };
 		381DE456936EDB582B885068 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 		3A856243FA56773C3A4A4923 /* DesignComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignComponents.swift; sourceTree = "<group>"; };
+		3F039F2788DF69D3DBCBEE4E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		469C87030B9A3CC0567D819D /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		48A25A5FEF06E69F6EDC3426 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		49A91C8C37B6E108DB71415E /* WhoopModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoopModels.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		F50AC5C26AEE4ABDBC26C1CE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F5F14DBFD4709D69FF08BDEC /* AISettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISettingsView.swift; sourceTree = "<group>"; };
 		F820ABF69795DEA098ECDEC8 /* DENETIM-2026-07-26.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "DENETIM-2026-07-26.md"; sourceTree = "<group>"; };
+		F8A0AA8DC0B8CC0F3B51862A /* RELEASE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RELEASE.md; sourceTree = "<group>"; };
 		FAA3E1AE6485E529BD9FE2E0 /* DayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
 		FCC42AB7F2C9806E2BB841BC /* 0002-whoop-istemci-bilgileri-keychain.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "0002-whoop-istemci-bilgileri-keychain.md"; sourceTree = "<group>"; };
 		FCD71A03B813BA59EE6E0495 /* PROJECT_SPEC.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PROJECT_SPEC.md; sourceTree = "<group>"; };
@@ -207,6 +210,7 @@
 			children = (
 				1815B138F761444FC816948F /* DECISIONS.md */,
 				F820ABF69795DEA098ECDEC8 /* DENETIM-2026-07-26.md */,
+				F8A0AA8DC0B8CC0F3B51862A /* RELEASE.md */,
 				72B4C507F7814E5FFB44CCCE /* adr */,
 				C44062754467F56544B8159C /* prompts */,
 			);
@@ -286,6 +290,7 @@
 				381DE456936EDB582B885068 /* CLAUDE.md */,
 				B629C5C86B879DF83D4D9137 /* DESIGN.md */,
 				E8A6355284B18A9775DF643A /* KURULUM.md */,
+				3F039F2788DF69D3DBCBEE4E /* Localizable.xcstrings */,
 				5C4AB9CFFBAB6069C128258B /* PrivacyInfo.xcprivacy */,
 				FCD71A03B813BA59EE6E0495 /* PROJECT_SPEC.md */,
 				12974BAA492875C53E44FDA5 /* AI */,
@@ -408,11 +413,11 @@
 				};
 			};
 			buildConfigurationList = 17659779D7744CFDAB13B603 /* Build configuration list for PBXProject "Bearing" */;
-			developmentRegion = en;
+			developmentRegion = tr;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
-				en,
+				tr,
 			);
 			mainGroup = 8D218420F447D8F098EA0AEE;
 			minimizedProjectReferenceProxies = 1;
@@ -433,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6ABF2FFE6007E6476EA81667 /* Assets.xcassets in Resources */,
+				5C2BB3CA8CC1D74B06F656F0 /* Localizable.xcstrings in Resources */,
 				A4C1C3C0F38A46633A08424E /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

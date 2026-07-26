@@ -4,6 +4,7 @@ options:
   deploymentTarget:
     iOS: "26.5"
   createIntermediateGroups: true
+  developmentLanguage: tr
 
 settings:
   base:
@@ -37,6 +38,7 @@ targets:
       - path: PrivacyInfo.xcprivacy
         buildPhase: resources
       - path: Assets.xcassets
+      - path: Localizable.xcstrings
     info:
       path: Info.plist
       properties:
