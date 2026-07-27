@@ -41,6 +41,10 @@ enum AITask: String, Codable, CaseIterable, Identifiable {
             return """
             Kullanıcının sorusunu, yukarıdaki deterministik anlık görüntüye dayanarak yanıtla.
             Sayı üretme; yalnızca verilen sayıları yorumla.
+
+            Biçim: Önce **tek cümlelik net cevap**. Ardından en fazla 3 madde — her biri tek satır, \
+            anahtar sayı/eylem **kalın**. Dolgu cümlesi ve uzun paragraf yok; yalnızca vurucu, \
+            eyleme dönük noktalar. Kullanıcı "detaylandır" demedikçe kısa tut.
             """
 
         case .nutritionPlan:

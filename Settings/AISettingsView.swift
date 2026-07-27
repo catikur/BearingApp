@@ -63,8 +63,16 @@ struct AISettingsView: View {
                         Text(String(format: "%.2f", config.temperature)).foregroundStyle(.secondary)
                     }
                     Slider(value: $config.temperature, in: 0...1, step: 0.05)
-                    Stepper("Maks. token: \(config.maxTokens)", value: $config.maxTokens, in: 300...4000, step: 100)
-                    Text("Düşük sıcaklık = daha tutarlı, daha az yaratıcı yorum. Sayısal işler için 0.2–0.4 önerilir.")
+                    HStack {
+                        Text("Maks. token")
+                        Spacer()
+                        Text(DS.integer(config.maxTokens))
+                            .foregroundStyle(.secondary).monospacedDigit()
+                    }
+                    Slider(value: Binding(get: { Double(config.maxTokens) },
+                                          set: { config.maxTokens = Int($0) }),
+                           in: 500...8000, step: 250)
+                    Text("Düşük sıcaklık = daha tutarlı, daha az yaratıcı yorum. Sayısal işler için 0.2–0.4 önerilir. Maks. token yanıt uzunluğunun tavanıdır; kısa yanıt istiyorsan sistem promptu zaten özetler, bunu yüksek tutmak yanıtın kesilmesini önler.")
                         .font(.caption2).foregroundStyle(.secondary)
                 }
 
@@ -72,7 +80,7 @@ struct AISettingsView: View {
                     Stepper(config.dailyTokenBudget == 0
                             ? "Günlük bütçe: sınırsız"
                             : "Günlük bütçe: \(DS.integer(config.dailyTokenBudget)) token",
-                            value: $config.dailyTokenBudget, in: 0...200_000, step: 5_000)
+                            value: $config.dailyTokenBudget, in: 0...1_000_000, step: 25_000)
                     HStack {
                         Text("Bugün kullanılan")
                         Spacer()

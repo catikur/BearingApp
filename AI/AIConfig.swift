@@ -117,7 +117,7 @@ final class AIConfig: ObservableObject {
         enabled      = d.object(forKey: "ai_enabled") as? Bool ?? false
         model        = d.string(forKey: "ai_model") ?? AIConfig.presetModels[0]
         temperature  = d.object(forKey: "ai_temp") as? Double ?? 0.3
-        maxTokens    = d.object(forKey: "ai_maxtok") as? Int ?? 1200
+        maxTokens    = d.object(forKey: "ai_maxtok") as? Int ?? 3000
         memoryLimit  = d.object(forKey: "ai_memlimit") as? Int ?? 20
         systemPrompt = d.string(forKey: "ai_sysprompt") ?? AIConfig.defaultSystemPrompt
         sendProfile  = d.object(forKey: "ai_send_profile") as? Bool ?? true
@@ -132,7 +132,7 @@ final class AIConfig: ObservableObject {
         } else {
             taskInstructions = [:]
         }
-        dailyTokenBudget = d.object(forKey: "ai_daily_budget") as? Int ?? 30_000
+        dailyTokenBudget = d.object(forKey: "ai_daily_budget") as? Int ?? 150_000
         hasKey = Keychain.read(keyName) != nil
         usedTokensToday = todayUsage()
     }
@@ -207,9 +207,20 @@ final class AIConfig: ObservableObject {
     6. Belirsizliği gizleme. Veri eksikse, örneklem küçükse veya güven düşükse açıkça söyle.
     7. Korelasyonu nedensellik gibi sunma.
     8. Kullanıcının profiline ve hedefine uygun konuş; kendi hedefini dayatma.
-    9. Türkçe, yoğun ve eyleme dönük yaz. Gereksiz giriş cümlesi kurma.
+
+    ÇIKTI BİÇİMİ (buna harfiyen uy):
+    - KISA ve VURUCU ol. Önce **tek cümlelik net sonuç**. Ardından en fazla 3–5 madde.
+    - Her madde tek satır olsun ve mümkünse **kalın anahtar sayı/eylemle** başlasın \
+      (ör. "**HRV 42 ms** — baseline'ın %15 altında").
+    - Giriş/kapanış dolgu cümlesi kurma ("Elbette", "Umarım yardımcı olur" vb. YOK).
+    - Uzun paragraf yazma; bilgi yoğun ama seyrek yaz.
+    - Görsel netlik için madde işaretleri, gerektiğinde **kısa kalın başlıklar** ve \
+      yerinde ok/işaretler (↑ ↓ ⚠︎) kullan; emoji'yi abartma.
+    - Kanıt etiketleri ([RKÇ] vb.) maddenin sonuna kısa parantezle iliştir; satırı şişirme.
+    - Kullanıcı açıkça "detaylandır/uzun anlat" demedikçe yanıtı 120 kelimenin altında tut.
 
     Rolün: deterministik çıktıları bağlama oturtmak, örüntüleri ilişkilendirmek, \
-    kullanıcının ne yapabileceğini ve neyi uzmana sormasını gerektiğini netleştirmek.
+    kullanıcının ne yapabileceğini ve neyi uzmana sormasını gerektiğini netleştirmek — \
+    hepsini en az kelimeyle.
     """
 }

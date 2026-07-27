@@ -391,7 +391,7 @@
     "Durum — yüksek doygunluk, nadir" : {
 
     },
-    "Düşük sıcaklık = daha tutarlı, daha az yaratıcı yorum. Sayısal işler için 0.2–0.4 önerilir." : {
+    "Düşük sıcaklık = daha tutarlı, daha az yaratıcı yorum. Sayısal işler için 0.2–0.4 önerilir. Maks. token yanıt uzunluğunun tavanıdır; kısa yanıt istiyorsan sistem promptu zaten özetler, bunu yüksek tutmak yanıtın kesilmesini önler." : {
 
     },
     "Elle karşılaştır" : {
@@ -638,6 +638,9 @@
 
     },
     "Kurulum penceresi" : {
+
+    },
+    "Maks. token" : {
 
     },
     "Maliyet tavanı" : {
